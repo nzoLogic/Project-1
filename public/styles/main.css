@@ -1,3 +1,8 @@
-h1 {
-  color: blue;
+.home-content {
+  height: 100vh;
+}
+#momentForm {
+  border: 1px dotted black;
+  margin-top: 25%;
+
 }

@@ -14,15 +14,17 @@
     <script src="scripts/app.js"></script>
 </head>
 
-<body class="container">
+<body class="container-fluid">
   <!-- Home Screen Content -->
   <div class="home-content">
     <h1 class="col-xs-offset-4">Project Name</h1>
     <!-- moment form -->
-    <form id="momentForm" class="form-horizontal">
+    <form id="momentForm" class="form-horizontal col-xs-6 col-xs-offset-3">
         <div class="form-group">
-            <textarea class="form-control" name="moment" row="3" placeholder="share your moment..">
+          <!-- Moment input -->
+            <textarea type="text" class="form-control" name="moment" row="3" placeholder="share your moment">
             </textarea>
+            <!-- Locations selector -->
             <select class="form-control">
               <option>SOMA</option>
               <option>Pacific Heights</option>
