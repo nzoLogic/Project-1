@@ -3,11 +3,11 @@ var $momentsFeed;
 
 $(document).ready(function(){
   $('select').material_select();
-
-  $momentsFeed = $('#momentsFeed');
-
-  var source = $('#moments-template').html();
-    template = Handlebars.compile(source);
+  //
+  // $momentsFeed = $('#momentsFeed');
+  //
+  // var source = $('#moments-template').html();
+  //   template = Handlebars.compile(source);
 
     $.ajax({
       method: 'GET',
@@ -34,16 +34,29 @@ $(document).ready(function(){
       //  $momentsFeed.empty();
 
 
-       var momentsHtml = template({ moments: moments });
+      //  var momentsHtml = template({ moments: moments });
 
 
        $momentsFeed.append(momentsHtml);
      }
 
+
+ function handleSuccess(success){
+console.log(success);
+
+ }
+
+ function handleError(success){
+console.log(succes);
+
+ }
+
+
      function newMomentSuccess(moments) {
        $('#textarea1 input').val('');
 
        json.forEach(moments);
+       console.log(moments);
        render();
      }
 
