@@ -16,6 +16,7 @@
     <script src="scripts/app.js"></script>
 </head>
 
+
 <body>
     <section class="home-content parallax-container">
         <header class="row">
@@ -46,7 +47,7 @@
                     </div>
                     <!-- Moment Input -->
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div id="momentText"class="input-field col s12">
                             <textarea id="textarea1" class="materialize-textarea" length="280"></textarea>
                             <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                             <label for="textarea1">Share your moments</label>
@@ -63,9 +64,16 @@
       </section>
       <!-- Moments Feed -->
       <section class="row">
-        <div class="moments-feed col s6 offset-s3">moments feed</div>
+        <div id="momentsFeed"class="moments-feed col s6 offset-s3">
+          moments feed
+        <script id="moments-template" type="text/x-handlebars-template">
+          {{moments}}
+
+        </script>
+        </div>
       </section>
     </main>
 </body>
+
 
 </html>

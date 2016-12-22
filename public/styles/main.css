@@ -1,8 +1,11 @@
 /**********
 Universals
 **********/
+
+
 header {
   background-color: #2C0071;
+
   color: #4700B7;
 }
 
@@ -14,7 +17,7 @@ Home Page styling
   background-color: #E70046;
 }
 #momentForm {
-  margin-top: 25%;
+  margin-top: 1%;
 }
 .input-field, option {
   font-size: 1.2em;
