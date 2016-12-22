@@ -4,12 +4,68 @@
 <head>
     <meta charset="utf-8">
     <title>Test run</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <!-- Materialize -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <link rel="stylesheet" href="styles/main.css" type="text/css">
     <script src="scripts/app.js"></script>
 </head>
 
 <body>
-  <h1>Sanity Check</h1>
+    <section class="home-content parallax-container">
+        <header class="row">
+            <h1 class="col s1 offset-s5">Project</h1>
+        </header>
+
+        <!-- Moment Form  -->
+        <div class="row parralax">
+            <form class="col s6 offset-s3" id="momentForm">
+                <div class="row">
+                    <!-- Location Selector -->
+                    <div class="input-field col s6">
+                        <select>
+                        <option value="" disabled selected>Choose your location</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                    </select>
+                    </div>
+                    <!-- Category Selector -->
+                    <div class="input-field col s6">
+                        <select multiple>
+                          <option value="" disabled selected>Choose your categories</option>
+                          <option value="1">Option 1</option>
+                          <option value="2">Option 2</option>
+                          <option value="3">Option 3</option>
+                      </select>
+                    </div>
+                    <!-- Moment Input -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" class="materialize-textarea" length="280"></textarea>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                            <label for="textarea1">Share your moments</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--Map Display Section -->
+    <main class="parralax-container">
+      <section class="row">
+        <div class="map col s6 offset-s3">MAP</div>
+      </section>
+      <!-- Moments Feed -->
+      <section class="row">
+        <div class="moments-feed col s6 offset-s3">moments feed</div>
+      </section>
+    </main>
 </body>
 
 </html>

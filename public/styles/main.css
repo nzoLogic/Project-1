@@ -1,3 +1,38 @@
-h1 {
-  color: blue;
+/**********
+Universals
+**********/
+header {
+  background-color: #2C0071;
+  color: #4700B7;
+}
+
+/*********
+Home Page styling
+***********/
+.home-content {
+  height: 100vh;
+  background-color: #E70046;
+}
+#momentForm {
+  margin-top: 25%;
+}
+.input-field, option {
+  font-size: 1.2em;
+}
+/***********
+Map & Moments feed styling
+***********/
+main {
+  height: 100vh;
+  background-color: #4700B7;
+}
+.map {
+  border: 2px solid black;
+  height: 350px;
+  margin-top: 4%;
+}
+
+.moments-feed {
+  border: 2px dashed red;
+  height: 375px;
 }
