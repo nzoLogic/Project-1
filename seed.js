@@ -9,14 +9,27 @@ var momentsList = [{
   message: 'After years of being in and out of terrible relationships, playing the victim, and acting as a doormat for anyone willing to treat me as so, today is the day I stand up for myself, take responsibility for my life, and begin loving myself first and foremost',
   location: 'unknown',
   categories: ['life changes']
-}
-]
+}],
 
+locationList = [
+  {
+    name: 'SOMA',
+    coordinates: {
+      lat: -25.363,
+      lng: 131.044
+    },
+    moments: ['moment 1']
+}];
+db.Locations.remove({}, function(err, locations){
+  locationList.forEach(function(location){
+    db.Locations.create(location);
+    console.log(location)
+  })
+})
 db.Moment.remove({}, function(err, moments){
   console.log('removed moments');
   momentsList.forEach(function(moment){
     // console.log(moment);
     db.Moment.create(moment);
   });
-  console.log(db.Moment.find({}));
 })
