@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
   var MomentSchema = new Schema({
     message: String,
     location: String,
-    categories: String
+    categories: [String]
   });
 
   var Moment = mongoose.model('Moment', MomentSchema);
