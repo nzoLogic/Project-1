@@ -3,12 +3,15 @@ console.log('app.js online');
 var $momentsFeed;
 
 $(document).ready(function() {
+    //select dropdown for materialize
     $('select').material_select();
+    //parallax initialization
+    $('.parallax').parallax()
 
     $momentsFeed = $('#momentsFeed');
 
     var momentSource = $('#moments-template').html();
-        momentHB = Handlebars.compile(momentSource);
+    momentHB = Handlebars.compile(momentSource);
 
     //get all moments
     $.ajax({
@@ -18,14 +21,11 @@ $(document).ready(function() {
         error: handleError
     });
     //carousel initialization
-      $('.carousel').carousel();
 
 
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
-        console.log('clicked');
         e.preventDefault();
-        console.log('new moment serialized', $(this).serializeArray());
         $.ajax({
             method: 'POST',
             url: '/api/moments',
@@ -33,32 +33,34 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
+  //       $('html, body').animate({
+  //     scrollTop: $("#").offset().top
+  // }, 2000);
     });
     //takes each moment and displays relative data
     function render(moment) {
-      $('#momentsFeed').append(momentHB({moment: moment}));
+        $('#momentsFeed').append(momentHB({
+            moment: moment
+        }));
     }
 
 
     function handleSuccess(moments) {
-      //for each moment in moments... render
-      moments.forEach(function(moment){
-        render(moment);
-      });
+        //for each moment in moments... render
+        moments.forEach(function(moment) {
+            // render(moment);
+        });
     }
 
     function handleError(err) {
-       console.log('error in moments', err);
+        console.log('error in moments', err);
     }
 
 
-    function newMomentSuccess(moments) {
-        $('#textarea1 input').val('');
-
-        json.forEach(moments);
-        console.log(moments);
-        render();
+    function newMomentSuccess(moment) {
+        // $('#textarea1 input').val('');
+        console.log(moment);
+        // render();
     }
-
 
 });
