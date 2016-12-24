@@ -14,8 +14,9 @@ function allMoments(req, res){
 //POST /api/moments
 function post(req, res){
   //seperates categories into array element by comma
-  var categorySplit = req.body.categories.split(',');
-  req.body.categories = categorySplit;
+  // var categorySplit = req.body.categories.split(',');
+  // req.body.categories = categorySplit;
+  console.log(req.body);
   var newMoment = new db.Moment(req.body);
   newMoment.save(function(err, saveMoment){
       if(err){

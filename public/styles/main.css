@@ -4,31 +4,23 @@ Universals
 
 
 header {
-  background-color: #2C0071;
-
   color: #4700B7;
 }
 
 /*********
 Home Page styling
 ***********/
-.home-content {
-  height: 100vh;
-  background-color: #E70046;
+.parallax {
+  height: 400px;
 }
-#momentForm {
-  margin-top: 1%;
-}
+
 .input-field, option {
   font-size: 1.2em;
 }
 /***********
 Map & Moments feed styling
 ***********/
-main {
-  height: 100vh;
-  background-color: #4700B7;
-}
+
 .map {
   border: 2px solid black;
   height: 350px;
