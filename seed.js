@@ -2,7 +2,7 @@ var db = require('./models');
 
 var momentsList = [{
     message: 'Today I witnessed an elderly lady crossing the street very slowly, when the cross walk light switched a man stopped to help escort her safely',
-    location: 'SOMA',
+    location: 'South of Market',
     categories: ['inspiring', 'motivating', 'life changes', 'perspective']
 },
 {
@@ -13,19 +13,45 @@ var momentsList = [{
 
 locationList = [
   {
-    name: 'SOMA',
+    name: 'South of Market',
     coordinates: {
-      lat: -25.363,
-      lng: 131.044
+      lat: 37.7785,
+      lng: 37.7785
     },
-    moments: ['moment 1']
-}];
+    moments: [String]
+  },
+  {
+    name: 'Richmond District',
+    coordinates: {
+      lat: 37.7799,
+      lng: 122.4647
+    },
+    moments: [String]
+  },
+  {
+    name: 'Mission District',
+    coordinates: {
+      lat: 37.7599,
+      lng: 122.4148
+    },
+    moments: [String]
+  },
+  {
+    name: 'Financial District',
+    coordinates: {
+      lat: 37.7946,
+      lng: 122.399
+    },
+    moments: [String]
+  },
+
+
+];
 db.Locations.remove({}, function(err, locations){
   locationList.forEach(function(location){
     db.Locations.create(location);
-    console.log(location)
   })
-})
+});
 db.Moment.remove({}, function(err, moments){
   console.log('removed moments');
   momentsList.forEach(function(moment){
