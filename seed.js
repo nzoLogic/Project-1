@@ -18,7 +18,7 @@ locationList = [
       lat: 37.7785,
       lng: 37.7785
     },
-    moments: [String]
+    moments: []
   },
   {
     name: 'Richmond District',
@@ -26,7 +26,7 @@ locationList = [
       lat: 37.7799,
       lng: 122.4647
     },
-    moments: [String]
+    moments: []
   },
   {
     name: 'Mission District',
@@ -34,7 +34,7 @@ locationList = [
       lat: 37.7599,
       lng: 122.4148
     },
-    moments: [String]
+    moments: []
   },
   {
     name: 'Financial District',
@@ -42,13 +42,15 @@ locationList = [
       lat: 37.7946,
       lng: 122.399
     },
-    moments: [String]
+    moments: []
   },
 
 
 ];
 db.Locations.remove({}, function(err, locations){
   locationList.forEach(function(location){
+    console.log(location.moments)
+    location.moments = momentsList.forEach()
     db.Locations.create(location);
   })
 });

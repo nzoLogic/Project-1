@@ -13,6 +13,6 @@ function allLocations(req, res){
   })
 }
 
-module.export = {
+module.exports = {
   allLocations : allLocations
 }
