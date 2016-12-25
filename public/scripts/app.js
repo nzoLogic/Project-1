@@ -2,7 +2,7 @@ console.log('app.js online');
 //active collection of moments
 var momentHB;
 var $momentsFeed;
-var moment =[];
+var moments =[];
 $(document).ready(function() {
     //select dropdown for materialize
     $('select').material_select();
@@ -40,7 +40,7 @@ $(document).ready(function() {
     });
     //takes each moment and displays relative data
     function render() {
-      //  $momentsFeed.empty();
+       $momentsFeed.empty();
        var momentHtml = momentHB({
            moments: moments
        });
@@ -60,9 +60,12 @@ $(document).ready(function() {
     }
 
 
-    function newMomentSuccess(moment) {
-        // $('#textarea1 input').val('');
-        console.log(moment);
+    function newMomentSuccess(json) {
+
+        $('#momentsFeed input').val('');
+          moments.push(json);
+        render();
+        console.log(json);
         // render();
     }
 
