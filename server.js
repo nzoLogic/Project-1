@@ -21,6 +21,9 @@ app.post('/api/moments', controllers.moments.post).post(controllers.locations.up
 
 //GET path for all Locations
 app.get('/api/locations', controllers.locations.allLocations);
+
+app.get('/api/locations/:name', controllers.locations.getLocMoments);
+
 //server listen to env port or local 3000
 app.listen(process.env.port || 3000, function() {
     console.log('listening on port 3k')
