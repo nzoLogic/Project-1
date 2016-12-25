@@ -68,10 +68,26 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/sanFrancisco.jpg">
             </div>
+        </div>
+        <!-- Moment Feed -->
+        <div class="section-white">
+          <div id = "momentsFeed" class="row-container">
+            <script id="moments-template" type="text/x-handlebars-template">
+                {{#each moments}}
+             <p>{{message}}</p> <p>{{categories}}</p>
+                 {{/each}}
+             </script>
+          </div>
+        </div>
+        <!-- Map -->
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/maps.jpg">
+            </div>
+        </div>
             <!--Map Display Section -->
             <!-- Handlebars template -->
-            <script id="moments-template" type="text/x-handlebars-template">
-            </script>
+
+
 </body>
 
 

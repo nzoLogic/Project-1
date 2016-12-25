@@ -1,7 +1,8 @@
 console.log('app.js online');
 //active collection of moments
+var momentHB;
 var $momentsFeed;
-
+var moment =[];
 $(document).ready(function() {
     //select dropdown for materialize
     $('select').material_select();
@@ -38,18 +39,20 @@ $(document).ready(function() {
   // }, 2000);
     });
     //takes each moment and displays relative data
-    function render(moment) {
-        $('#momentsFeed').append(momentHB({
-            moment: moment
-        }));
+    function render() {
+      //  $momentsFeed.empty();
+       var momentHtml = momentHB({
+           moments: moments
+       });
+        $momentsFeed.append(momentHtml);
     }
 
 
-    function handleSuccess(moments) {
+    function handleSuccess(json) {
         //for each moment in moments... render
-        moments.forEach(function(moment) {
-            // render(moment);
-        });
+        moments= json;
+        console.log(json);
+          render();
     }
 
     function handleError(err) {
