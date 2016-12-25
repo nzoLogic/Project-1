@@ -2,7 +2,8 @@
 functions for accessing moments
 ***************/
 
-var db = require('../models');
+var db = require('../models'),
+    Locations = require('./location.js');
 
 // GET /api/moments
 function allMoments(req, res){
@@ -13,16 +14,16 @@ function allMoments(req, res){
 }
 //POST /api/moments
 function post(req, res){
-  //seperates categories into array element by comma
-  // var categorySplit = req.body.categories.split(',');
-  // req.body.categories = categorySplit;
-  console.log(req.body);
-  var newMoment = new db.Moment(req.body);
+  //saves req body into variable
+  var newMoment = new db.Moment(req.body),
+      locationName = req.body.location;
+  // find moments location to update embedded moments
   newMoment.save(function(err, saveMoment){
       if(err){
         console.log('error on moment save', err);
       }
       else{
+        Locations.update(locationName, saveMoment._id)
         res.json(saveMoment);
       }
   })

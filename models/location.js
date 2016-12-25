@@ -9,7 +9,10 @@ var mongoose = require('mongoose'),
       lat: Number,
       lng: Number
     },
-    moments: [String]
+    moments: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Moments'
+    }]
   });
 
 var Locations = mongoose.model('Locations', LocationSchema);

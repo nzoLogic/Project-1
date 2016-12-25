@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 app.get('/api/moments', controllers.moments.allMoments);
 
 //post path for adding a moment
-app.post('/api/moments', controllers.moments.post);
+app.post('/api/moments', controllers.moments.post).post(controllers.locations.update);
 
 //GET path for all Locations
 app.get('/api/locations', controllers.locations.allLocations);

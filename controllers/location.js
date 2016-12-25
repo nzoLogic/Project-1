@@ -12,7 +12,23 @@ function allLocations(req, res){
     }
   })
 }
+function updateLoc(name, id){
+  console.log('update loc online');
+  db.Locations.findOne({name: name}, function(err, updatedLoc){
+    if(err){
+      console.log('error updating location', err);
+      res.status(500).send();
+    }
+    else {
+      updatedLoc.moments.push(id);
+      updatedLoc.save();
+      console.log('updated location is ', updatedLoc)
+      ///may need to res.json.populate this back
+    }
+  })
+}
 
 module.exports = {
-  allLocations : allLocations
+  allLocations : allLocations,
+  update: updateLoc
 }
