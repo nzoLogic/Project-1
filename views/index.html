@@ -50,7 +50,7 @@
                           <option value="" disabled selected>Choose your categories</option>
                           <option>Inspiring</option>
                           <option>Motivating</option>
-                          <option>Fresh Start</option>
+                          <option>Life Changes</option>
                           <option>Perspective</option>
                       </select>
                     </div>
@@ -68,10 +68,30 @@
         <div class="parallax-container">
             <div class="parallax"><img src="images/sanFrancisco.jpg">
             </div>
+        </div>
+        <!-- Moment Feed -->
+        <div class="section-white">
+            <a class="btn-flat categories" id="inspiring">Inspiring</a>
+            <a class="btn-flat categories" id="motivating">Motivating</a>
+            <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
+            <a class="btn-flat categories" id="perspective">Perspective</a>
+          <div id = "momentsFeed" class="row-container">
+            <script id="moments-template" type="text/x-handlebars-template">
+
+             <p>{{moments}} <spam> {{categories}}</spam></p>
+
+             </script>
+          </div>
+        </div>
+        <!-- Map -->
+        <div class="parallax-container">
+            <div class="parallax"><img src="images/maps.jpg">
+            </div>
+        </div>
             <!--Map Display Section -->
             <!-- Handlebars template -->
-            <script id="moments-template" type="text/x-handlebars-template">
-            </script>
+
+
 </body>
 
 
