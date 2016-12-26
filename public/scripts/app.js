@@ -43,9 +43,10 @@ $(document).ready(function() {
 
 
 
+
+
+
     var currentCat = "Inspiring";
-
-
 
     $('#motivating').on('click', function(e){
       e.preventDefault();
