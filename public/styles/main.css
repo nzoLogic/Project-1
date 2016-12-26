@@ -25,11 +25,9 @@ Map & Moments feed styling
   height: 60vh;
 }
 .map {
-  border: 2px solid black;
   height: inherit;
 }
 
 #momentsFeed {
-  border: 2px dashed red;
   height: 100%;
 }
