@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
     },
     moments: [{
       type: Schema.Types.ObjectId,
-      ref: 'Moments'
+      ref: 'Moment'
     }]
   });
 

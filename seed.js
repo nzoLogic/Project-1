@@ -39,23 +39,17 @@ var locationList = [{
     },
     moments: []
 }];
-// momentsList.forEach(function(moment){
-//   console.log(moment.location);
-// })
+
+db.Moment.remove({}, function(err, moments) {
+  console.log('removed moments');
+  momentsList.forEach(function(moment) {
+    // console.log(moment);
+    db.Moment.create(moment);
+  });
+});
+
 db.Locations.remove({}, function(err, locations) {
     locationList.forEach(function(location) {
-        momentsList.forEach(function(moment) {
-            if (moment.location === location.name) {
-                location.moments.push(moment.message);
-            }
-        });
         db.Locations.create(location);
     });
 });
-db.Moment.remove({}, function(err, moments) {
-    console.log('removed moments');
-    momentsList.forEach(function(moment) {
-        // console.log(moment);
-        db.Moment.create(moment);
-    });
-})

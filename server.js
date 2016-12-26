@@ -21,7 +21,7 @@ app.post('/api/moments', controllers.moments.post).post(controllers.locations.up
 
 //GET path for all Locations
 app.get('/api/locations', controllers.locations.allLocations);
-
+//GET path for all of a locations moments with params name
 app.get('/api/locations/:name', controllers.locations.getLocMoments);
 
 //server listen to env port or local 3000

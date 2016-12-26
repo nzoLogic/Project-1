@@ -14,7 +14,6 @@ function allLocations(req, res){
 }
 //updates a locations moments called on the POST route for /api/moments
 function updateLoc(name, id){
-  console.log('update loc online');
   db.Locations.findOne({name: name}, function(err, updatedLoc){
     if(err){
       console.log('error updating location', err);
@@ -23,20 +22,16 @@ function updateLoc(name, id){
     else {
       updatedLoc.moments.push(id);
       updatedLoc.save();
-      console.log('updated location is ', updatedLoc)
       ///may need to res.json.populate this back
     }
   })
 }
 //fetches all moments of a specific location
 function getLocMoments(req, res){
-  db.Locations.findOne({name: req.params.name}, function(err, loc){
-    loc.moments.forEach(function(moment){
-      moment.populate('Moments');
-      console.log(moment)
-    })
-
-  })
+  db.Locations.findOne({name: req.params.name})
+      .populate('moments').exec(function(err, location){
+        console.log(location);
+      });
 }
 
 module.exports = {

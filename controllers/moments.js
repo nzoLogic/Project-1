@@ -23,7 +23,7 @@ function post(req, res){
         console.log('error on moment save', err);
       }
       else{
-        Locations.update(locationName, saveMoment._id)
+        Locations.update(locationName, saveMoment)
         res.json(saveMoment);
       }
   })
