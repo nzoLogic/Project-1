@@ -28,9 +28,16 @@ function updateLoc(name, id){
 }
 //fetches all moments of a specific location
 function getLocMoments(req, res){
+  //find location by the params/name
   db.Locations.findOne({name: req.params.name})
+      //populate the moments attribute of found location
       .populate('moments').exec(function(err, location){
-        console.log(location);
+        if(err){
+          return console.log('Error in populating', err);
+        }
+        console.log(location.moments[0].message);
+        //respond with JSON collection of moments
+        res.json(location.moments);
       });
 }
 
