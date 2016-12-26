@@ -23,6 +23,7 @@ function post(req, res){
         console.log('error on moment save', err);
       }
       else{
+        console.log(saveMoment);
         res.json(saveMoment);
       }
   })

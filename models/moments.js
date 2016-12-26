@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
   var MomentSchema = new Schema({
     message: String,
-    location: String,
+    location: String,  
     categories: [String]
   });
 
