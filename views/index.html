@@ -6,34 +6,52 @@
     <title>Test run</title>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
-    <!-- Materialize -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <!-- Handlebars -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="styles/main.css" type="text/css">
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <script src="scripts/app.js"></script>
+    <!-- local css -->
+    <link rel="stylesheet" href="styles/main.css" type="text/css">
     <!-- Maps script -->
     <script src="scripts/maps.js"></script>
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Maps Key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMgpuT7-zoEehYsAqejmiIRhmDZRNb2G8"async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMgpuT7-zoEehYsAqejmiIRhmDZRNb2G8" async defer></script>
 </head>
 
 
 <body>
-    <header class="row container">
-        <h1 class="header col s1 offset-s5">Project</h1>
-    </header>
-    <section class="home-content parallax-container">
+  <header>
+  <nav>
+   <div class="nav-wrapper">
+     <a href="#" class="brand-logo">Logo</a>
+     <ul id="nav-mobile" class="right hide-on-med-and-down">
+       <li><a href="#Moments">Moments</a></li>
+       <li><a href="#">Humanity</a></li>
+       <li><a href="#">Admin</a></li>
+     </ul>
+   </div>
+ </nav>
+ </header>
+ <main>
+   <section class="parallax-container valign-wrapper">
+      <h1 class="header valign">this is an introductory message for our site....</h1>
         <div class="parallax"><img src="images/heaven.jpg">
         </div>
     </section>
-    <div class="section">
-        <div class="row container">
+    <!-- drop arrow footer -->
+    <footer class="page-footer">
+      <a href="#Moments"><i class="material-icons large">arrow_drop_down</i></a>
+    </footer>
+  </main>
+  <!-- Moment form section -->
+    <section class="section form-section" id="Moments">
             <h2 class="header">Share A Moment</h2>
-        </div>
         <!-- Moment Form  -->
         <div class="row">
             <form class="col s6 offset-s3" id="momentForm">
@@ -68,7 +86,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </section>
 
         <div class="parallax-container">
             <div class="parallax"><img src="images/sanFrancisco.jpg">
@@ -76,30 +94,31 @@
         </div>
         <!-- Moment Feed -->
         <section class="row moment-section">
-        <div class="section-white col s2">
-          <!-- <ul id="slide-out" class="side-nav"> -->
-            <a class="btn-flat categories" id="inspiring">Inspiring</a>
-            <a class="btn-flat categories" id="motivating">Motivating</a>
-            <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
-            <a class="btn-flat categories" id="perspective">Perspective</a>
-          <!-- </ul> -->
-          </div>
-          <div id = "momentsFeed" class="col s5">
-          </div>
-          <div class="map col s5"></div>
-        </section>
-        <!-- Map -->
-        <!-- <div class="parallax-container">
-            <div class="parallax"><img src="images/maps.jpg">
+            <div class="section-white col s2">
+                <!-- <ul id="slide-out" class="side-nav"> -->
+                <a class="btn-flat categories" id="inspiring">Inspiring</a>
+                <a class="btn-flat categories" id="motivating">Motivating</a>
+                <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
+                <a class="btn-flat categories" id="perspective">Perspective</a>
+                <!-- </ul> -->
             </div>
-        </div> -->
-            <!--Map Display Section -->
-            <!-- Handlebars template -->
-            <script id="moments-template" type="text/x-handlebars-template">
+            <div id="momentsFeed" class="col s5">
+            </div>
+          <!--Map Display Section -->
+            <div class="map col s5"></div>
+        </section>
+        <!-- Handlebars template -->
+        <script id="moments-template" type="text/x-handlebars-template">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                     <div class="collapsible-header active">{{moment.categories}}</div>
+                    <div class="collapsible-body">
+                        <p>{{moment.message}}</p>
+                    </div>
+                </li>
+            </ul>
 
-              <p>{{moment.message}}</p>
-
-            </script>
+        </script>
 
 
 </body>

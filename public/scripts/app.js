@@ -25,7 +25,8 @@ $(document).ready(function() {
     });
     //carousel initialization
 
-
+    /* !!!THIS BREAKS MY INFITE DISPLAY FUNCTION !!!FIXXX */
+    
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
         e.preventDefault();
@@ -36,9 +37,9 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
-        //       $('html, body').animate({
-        //     scrollTop: $("#").offset().top
-        // }, 2000);
+              $('html, body').animate({
+            scrollTop: $('.moment-section').offset().top
+        }, 2000);
     });
 
 
@@ -75,21 +76,28 @@ $(document).ready(function() {
     //checks if moment feed has 3 moments inside. empties if it does.
     function select3() {
         var nOfMoments = $momentsFeed.children().length;
-        //is there 3 moments?
+        //toggle 2nd child class popout
+        if (nOfMoments > 0) {
+            $('.collapsible:nth-child(2)').toggleClass('popout');
+        }
+        //remove first child
         if (nOfMoments === 3) {
-            console.log(nOfMoments);
-            $momentsFeed.empty();
+            // console.log(topChild);
+            $('.collapsible:first').detach();
             return select3();
         }
+
         //render the first moment in collection
         render(moments.shift());
     }
     //appends data to moments feed section every 3 seconds
     function render(data) {
+
         $momentsFeed.append(momentHB({
             moment: data
         }));
-        //pushes the data back into the moments collection 
+        $('.collapsible').collapsible();
+        //pushes the data back into the moments collection
         moments.push(data);
         setTimeout(function() {
             select3();

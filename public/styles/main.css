@@ -1,31 +1,69 @@
 /**********
 Universals
 **********/
-
-
-header {
-  color: #4700B7;
-
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+main {
+  flex: 1 0 auto;
+}
+.header {
+  color: #4700B7;
+}
+.parallax-container {
+  height: 80vh;
+  margin-bottom: 0;
+}
+main {
+  /*height: 100vh;*/
+}
+.page-footer  {
+  margin-top: 0 !important;
+  text-align: center;
+  background-color: #CD01F0 !important;
+}
+/*********
+nav styling
+************/
+.nav-wrapper {
+  background-color: #CD01F0;
+}
+li a {
+  color: #FCF2FE !important;
+}
+
+.material-icons {
+  text-shadow: 2px 2px 5px black;
+  transition: .5s;
+}
+
 /*********
 Home Page styling
 ***********/
-.parallax {
-  height: 400px;
-
-}
 
 .input-field, option {
   font-size: 1.2em;
 }
+
+/**********
+form styling
+***********/
+.form-section {
+  margin-top: 0 !important;
+}
+
+
 /***********
 Map & Moments feed styling
 ***********/
 .moment-section {
-  height: 60vh;
+  height: 75vh;
+  /*background-color: #FF8E58;*/
 }
 .map {
-  height: inherit;
+  height: 100%;
 }
 
 #momentsFeed {
