@@ -15,6 +15,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <link rel="stylesheet" href="styles/main.css" type="text/css">
     <script src="scripts/app.js"></script>
+    <!-- Maps script -->
+    <script src="scripts/maps.js"></script>
+    <!-- Maps Key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMgpuT7-zoEehYsAqejmiIRhmDZRNb2G8"async defer></script>
 </head>
 
 
@@ -65,31 +69,37 @@
                 </div>
             </form>
         </div>
+
         <div class="parallax-container">
             <div class="parallax"><img src="images/sanFrancisco.jpg">
             </div>
         </div>
         <!-- Moment Feed -->
-        <div class="section-white">
+        <section class="row moment-section">
+        <div class="section-white col s2">
+          <!-- <ul id="slide-out" class="side-nav"> -->
             <a class="btn-flat categories" id="inspiring">Inspiring</a>
             <a class="btn-flat categories" id="motivating">Motivating</a>
             <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
             <a class="btn-flat categories" id="perspective">Perspective</a>
-          <div id = "momentsFeed" class="row-container">
-            <script id="moments-template" type="text/x-handlebars-template">
-
-             <p>{{moments}} <spam> {{categories}}</spam></p>
-
-             </script>
+          <!-- </ul> -->
           </div>
-        </div>
+          <div id = "momentsFeed" class="col s5">
+          </div>
+          <div class="map col s5"></div>
+        </section>
         <!-- Map -->
-        <div class="parallax-container">
+        <!-- <div class="parallax-container">
             <div class="parallax"><img src="images/maps.jpg">
             </div>
-        </div>
+        </div> -->
             <!--Map Display Section -->
             <!-- Handlebars template -->
+            <script id="moments-template" type="text/x-handlebars-template">
+
+              <p>{{moment.message}}</p>
+
+            </script>
 
 
 </body>

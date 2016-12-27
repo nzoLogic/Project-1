@@ -5,8 +5,8 @@ Universals
 
 header {
   color: #4700B7;
-}
 
+}
 /*********
 Home Page styling
 ***********/
@@ -21,14 +21,13 @@ Home Page styling
 /***********
 Map & Moments feed styling
 ***********/
-
+.moment-section {
+  height: 60vh;
+}
 .map {
-  border: 2px solid black;
-  height: 350px;
-  margin-top: 4%;
+  height: inherit;
 }
 
-.moments-feed {
-  border: 2px dashed red;
-  height: 375px;
+#momentsFeed {
+  height: 100%;
 }
