@@ -24,7 +24,7 @@ Map & Moments feed styling
 .moment-section {
   height: 60vh;
 }
-.map {
+#map {
   height: inherit;
 }
 
