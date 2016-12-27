@@ -26,32 +26,35 @@
 
 
 <body>
-  <header>
-  <nav>
-   <div class="nav-wrapper">
-     <a href="#" class="brand-logo">Logo</a>
-     <ul id="nav-mobile" class="right hide-on-med-and-down">
-       <li><a href="#Moments">Moments</a></li>
-       <li><a href="#">Humanity</a></li>
-       <li><a href="#">Admin</a></li>
-     </ul>
-   </div>
- </nav>
- </header>
- <main>
-   <section class="parallax-container valign-wrapper">
-      <h1 class="header valign">this is an introductory message for our site....</h1>
-        <div class="parallax"><img src="images/heaven.jpg">
-        </div>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#momentsFeed">Moments</a></li>
+                    <li><a href="#">Humanity</a></li>
+                    <li><a href="#">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="parallax-container home valign-wrapper">
+            <h1 class="header valign">this is an introductory message for our site....</h1>
+            <div class="parallax"><img src="images/heaven.jpg">
+            </div>
+        </section>
+        <!-- drop arrow footer -->
+        <footer class="page-footer">
+            <a href="#Moments"><i class="material-icons large">arrow_drop_down</i></a>
+        </footer>
+    </main>
+    <section class="parallax-container">
+      <div class="parallax"><img src="images/earth-clouds.jpg">
     </section>
-    <!-- drop arrow footer -->
-    <footer class="page-footer">
-      <a href="#Moments"><i class="material-icons large">arrow_drop_down</i></a>
-    </footer>
-  </main>
-  <!-- Moment form section -->
+    <!-- Moment form section -->
     <section class="section form-section" id="Moments">
-            <h2 class="header">Share A Moment</h2>
+        <h2 class="header">Share A Moment</h2>
         <!-- Moment Form  -->
         <div class="row">
             <form class="col s6 offset-s3" id="momentForm">
@@ -86,39 +89,39 @@
                     </div>
                 </div>
             </form>
-        </section>
+    </section>
 
-        <div class="parallax-container">
-            <div class="parallax"><img src="images/sanFrancisco.jpg">
-            </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="images/sanFrancisco.jpg">
         </div>
-        <!-- Moment Feed -->
-        <section class="row moment-section">
-            <div class="section-white col s2">
-                <!-- <ul id="slide-out" class="side-nav"> -->
-                <a class="btn-flat categories" id="inspiring">Inspiring</a>
-                <a class="btn-flat categories" id="motivating">Motivating</a>
-                <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
-                <a class="btn-flat categories" id="perspective">Perspective</a>
-                <!-- </ul> -->
-            </div>
-            <div id="momentsFeed" class="col s5">
-            </div>
-          <!--Map Display Section -->
-            <div class="map col s5"></div>
-        </section>
-        <!-- Handlebars template -->
-        <script id="moments-template" type="text/x-handlebars-template">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                     <div class="collapsible-header active">{{moment.categories}}</div>
-                    <div class="collapsible-body">
-                        <p>{{moment.message}}</p>
-                    </div>
-                </li>
-            </ul>
+    </div>
+    <!-- Moment Feed -->
+    <section class="row moment-section">
+        <div class="section-white col s2">
+            <!-- <ul id="slide-out" class="side-nav"> -->
+            <a class="btn-flat categories" id="inspiring">Inspiring</a>
+            <a class="btn-flat categories" id="motivating">Motivating</a>
+            <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
+            <a class="btn-flat categories" id="perspective">Perspective</a>
+            <!-- </ul> -->
+        </div>
+        <div id="momentsFeed" class="col s5">
+        </div>
+        <!--Map Display Section -->
+        <div class="map col s5"></div>
+    </section>
+    <!-- Handlebars template -->
+    <script id="moments-template" type="text/x-handlebars-template">
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header active">{{moment.categories}}</div>
+                <div class="collapsible-body">
+                    <p>{{moment.message}}</p>
+                </div>
+            </li>
+        </ul>
 
-        </script>
+    </script>
 
 
 </body>

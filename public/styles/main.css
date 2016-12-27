@@ -13,7 +13,7 @@ main {
   color: #4700B7;
 }
 .parallax-container {
-  height: 80vh;
+  height: 50vh;
   margin-bottom: 0;
 }
 main {
@@ -37,6 +37,7 @@ li a {
 .material-icons {
   text-shadow: 2px 2px 5px black;
   transition: .5s;
+  font-size: 32px;
 }
 
 /*********
@@ -46,7 +47,9 @@ Home Page styling
 .input-field, option {
   font-size: 1.2em;
 }
-
+.home {
+  height: 80vh;
+}
 /**********
 form styling
 ***********/
