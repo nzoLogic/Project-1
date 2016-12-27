@@ -2,13 +2,13 @@ console.log('app.js online');
 //active collection of moments
 var momentHB;
 var $momentsFeed;
-var moments =[];
+var moments = [];
 $(document).ready(function() {
     //select dropdown for materialize
     $('select').material_select();
     //parallax initialization
     $('.parallax').parallax()
-    // Tabs
+        // Tabs
     $('ul.tabs').tabs();
 
     $momentsFeed = $('#momentsFeed');
@@ -36,73 +36,64 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
-  //       $('html, body').animate({
-  //     scrollTop: $("#").offset().top
-  // }, 2000);
+        //       $('html, body').animate({
+        //     scrollTop: $("#").offset().top
+        // }, 2000);
     });
-
-
-
-
 
 
     var currentCat = "Inspiring";
 
-    $('#motivating').on('click', function(e){
-      e.preventDefault();
-      currentCat = "Motivating";
-      render();
+    $('#motivating').on('click', function(e) {
+        e.preventDefault();
+        currentCat = "Motivating";
+        render();
     })
-    $('#inspiring').on('click', function(e){
-      e.preventDefault();
-      currentCat = "Inspiring";
-      render();
+    $('#inspiring').on('click', function(e) {
+        e.preventDefault();
+        currentCat = "Inspiring";
+        render();
     })
-    $('#lifeChanges').on('click', function(e){
-      e.preventDefault();
-      currentCat = "Life Changes";
-      render();
+    $('#lifeChanges').on('click', function(e) {
+        e.preventDefault();
+        currentCat = "Life Changes";
+        render();
     })
-    $('#perspective').on('click', function(e){
-      e.preventDefault();
-      currentCat = "Perspective";
-      render();
-    })
-
+    $('#perspective').on('click', function(e) {
+            e.preventDefault();
+            currentCat = "Perspective";
+            render();
+        })
+        //handles successfull GET req for all moments
     function handleSuccess(json) {
-        //for each moment in moments... render
+        //call a function to sort each moment
         moments = json;
-        moments.forEach(function(moment){
-          for(var i = 0; i < moment.categories.length; i++){
-            // console.log(moment.message , moment.categories[i])
-            if(moment.categories[i] === currentCat){
-              var momentHtml = momentHB({
-                  moments: moment.message,
-                  categories: moment.categories
-              });
-              // console.log(moment);
-              $momentsFeed.append(momentHtml);
-            }
-          }
-        });
+        select3();
     }
+    //function that pushes moments message and categories into array
 
-    function render(){
-      $momentsFeed.empty();
-      // inspiring
-      moments.forEach(function(moment){
-        for(var i = 0; i < moment.categories.length; i++){
-          // console.log(moment.message , moment.categories[i])
-          if(moment.categories[i] === currentCat){
-            var momentHtml = momentHB({
-              moments: moment.message,
-              categories: moment.categories
-            });
-            // console.log(moment);
-            $momentsFeed.append(momentHtml);
-          }
+    //checks if moment feed has 3 moments inside. empties if it does.
+    function select3() {
+        var nOfMoments = $momentsFeed.children().length;
+        //is there 3 moments?
+        if (nOfMoments === 3) {
+            console.log(nOfMoments);
+            $momentsFeed.empty();
+            return select3();
         }
-      });
+        //render the first moment in collection
+        render(moments.shift());
+    }
+    //appends data to moments feed section every 3 seconds
+    function render(data) {
+        $momentsFeed.append(momentHB({
+            moment: data
+        }));
+        //pushes the data back into the moments collection 
+        moments.push(data);
+        setTimeout(function() {
+            select3();
+        }, 3000);
     }
 
     function handleError(err) {
@@ -113,7 +104,7 @@ $(document).ready(function() {
     function newMomentSuccess(json) {
 
         $('#momentsFeed input').val('');
-          moments.push(json);
+        moments.push(json);
         render();
     }
 
