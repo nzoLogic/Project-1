@@ -21,7 +21,7 @@
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Maps Key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMgpuT7-zoEehYsAqejmiIRhmDZRNb2G8" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?" async defer></script>
 </head>
 
 
@@ -71,7 +71,7 @@
                     </div>
                     <!-- Category Selector -->
                     <div class="input-field col s6">
-                        <select multiple name="categories">
+                        <select multiple name="categories" min="1">
                           <option value="" disabled selected>Choose your categories</option>
                           <option>Inspiring</option>
                           <option>Motivating</option>
@@ -82,7 +82,7 @@
                     <!-- Moment Input -->
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea id="textarea1" name="message" class="materialize-textarea" length="280"></textarea>
+                            <textarea id="textarea1" name="message" class="materialize-textarea" required length="280"></textarea>
                             <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
                             <label for="textarea1">Share your moments</label>
                         </div>
@@ -97,19 +97,21 @@
     </div>
     <!-- Moment Feed -->
     <section class="row moment-section">
-        <div class="section-white col s2">
-            <!-- <ul id="slide-out" class="side-nav"> -->
-            <a class="btn-flat categories" id="inspiring">Inspiring</a>
-            <a class="btn-flat categories" id="motivating">Motivating</a>
-            <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
-            <a class="btn-flat categories" id="perspective">Perspective</a>
-            <!-- </ul> -->
+        <div class="section-white col s1">
+          <a href="#" data-activates="slide-out" class="button-collapse btn-floating btn-large"><i class="material-icons">menu</i></a>
         </div>
-        <div id="momentsFeed" class="col s5">
+        <div id="momentsFeed" class="col s6">
         </div>
-        <!--Map Display Section -->
-        <div class="map col s5"></div>
+        <!--Map -->
+        <div class="map col s4"></div>
     </section>
+    <!-- slide out menu for filtering moments -->
+    <ul id="slide-out" class="side-nav categories">
+      <a class="btn-flat categories" data-id="inspiring">Inspiring</a>
+      <a class="btn-flat categories" data-id="motivating">Motivating</a>
+      <a class="btn-flat categories" data-id="life changes">Life Changes</a>
+      <a class="btn-flat categories" data-id="perspective">Perspective</a>
+    </ul>
     <!-- Handlebars template -->
     <script id="moments-template" type="text/x-handlebars-template">
         <ul class="collapsible" data-collapsible="accordion">
