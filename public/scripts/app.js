@@ -32,7 +32,7 @@ $(document).ready(function() {
         success: handleSuccess,
         error: handleError
     });
-console.log(map);
+
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
         e.preventDefault();
@@ -69,6 +69,7 @@ console.log(map);
         moments = momentsFeed;
         console.log(momentsFeed)
         select3();
+        locationContainer(moments);
     }
     //checks if moment feed has 3 moments inside.
     function select3() {
@@ -136,23 +137,23 @@ console.log(map);
 function mapSuccess(map){
   markers = map;
    console.log(map);
-   currentLocation();
-   currentMarkers();
+
+
 }
 
 // coordinates for current markers
-function currentMarkers(){
- markers.forEach(function(marker){
-  console.log(marker);
-  var lngLat = {
-    lng: marker.coordinates.lng,
-    lat: marker.coordinates.lat
-  };
+function locationContainer(collections){
+ collections.forEach(function(collection){
+  console.log(collection.location);
+  // var lngLat = {
+  //   lng: marker.coordinates.lng,
+  //   lat: marker.coordinates.lat
+  // };
   // set coordinates in google maps
-  var marker = new google.maps.Marker({
-   map: map,
-   position: lngLat
- });
+ //  var marker = new google.maps.Marker({
+ //   map: map,
+ //   position: lngLat
+ // });
 
 });
 
