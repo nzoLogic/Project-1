@@ -14,28 +14,28 @@ var locationList = [{
     name: 'South of Market',
     coordinates: {
         lat: 37.7785,
-        lng: 37.7785
+        lng: -122.4056
     },
     moments: []
 }, {
     name: 'Richmond District',
     coordinates: {
         lat: 37.7799,
-        lng: 122.4647
+        lng: -122.4647
     },
     moments: []
 }, {
     name: 'Mission District',
     coordinates: {
         lat: 37.7599,
-        lng: 122.4148
+        lng: -122.4148
     },
     moments: []
 }, {
     name: 'Financial District',
     coordinates: {
         lat: 37.7946,
-        lng: 122.399
+        lng: -122.399
     },
     moments: []
 }];
