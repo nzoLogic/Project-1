@@ -89,7 +89,7 @@ $(document).ready(function() {
         $momentsFeed.append(momentHB({
             moment: data
         }));
-        //pushes the data back into the moments collection 
+        //pushes the data back into the moments collection
         moments.push(data);
         setTimeout(function() {
             select3();
