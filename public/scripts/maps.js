@@ -1,4 +1,5 @@
 console.log('maps.js online');
+<<<<<<< HEAD
 // var map;
 $(document).ready(function(){
   var map;
@@ -105,3 +106,20 @@ function mapError(){
 
 
 });
+=======
+
+$(document).ready(function() {
+    //maps initial options
+    var mapOptions = {
+        center: new google.maps.LatLng(37.7831, -122.4039),
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        zoomControl: false
+    };
+
+    new google.maps.Map(document.getElementsByClassName('map')[0], mapOptions);
+    $('.mapInit').click(function(e) {
+      $('.map').toggle('display');
+    })
+})
+>>>>>>> d44e2cf882ad4ccda8d72c88376c59c599497d1a
