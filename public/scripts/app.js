@@ -1,8 +1,10 @@
 console.log('app.js online');
 //active collection of moments
-var momentHB;
 var $momentsFeed;
-var moments = [];
+var moments = [],
+    momentsFeed = [];
+//callback functions
+
 $(document).ready(function() {
     //select dropdown for materialize
     $('select').material_select();
@@ -10,11 +12,18 @@ $(document).ready(function() {
     $('.parallax').parallax()
         // Tabs
     $('ul.tabs').tabs();
+    //materialize button collapsible
+    $('.button-collapse').sideNav();
+    //dropdown hover
+    $('.dropdown-button').dropdown({
+      hover: true,
+      belowOrigin: true
+      });
 
+    //Handelbars variable
     $momentsFeed = $('#momentsFeed');
-
     var momentSource = $('#moments-template').html();
-    momentHB = Handlebars.compile(momentSource);
+    var momentHB = Handlebars.compile(momentSource);
 
     //get all moments
     $.ajax({
@@ -23,8 +32,6 @@ $(document).ready(function() {
         success: handleSuccess,
         error: handleError
     });
-    //carousel initialization
-
 
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
@@ -36,76 +43,69 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
-        //       $('html, body').animate({
-        //     scrollTop: $("#").offset().top
-        // }, 2000);
+        $('html, body').animate({
+            scrollTop: $('.moment-section').offset().top
+        }, 2000);
     });
 
 
-    var currentCat = "Inspiring";
-
-    $('#motivating').on('click', function(e) {
-        e.preventDefault();
-        currentCat = "Motivating";
-        render();
-    })
-    $('#inspiring').on('click', function(e) {
-        e.preventDefault();
-        currentCat = "Inspiring";
-        render();
-    })
-    $('#lifeChanges').on('click', function(e) {
-        e.preventDefault();
-        currentCat = "Life Changes";
-        render();
-    })
-    $('#perspective').on('click', function(e) {
-            e.preventDefault();
-            currentCat = "Perspective";
-            render();
+    //event listener for categories sideNav
+    $('#categoryDropdown').on('click', 'a',function(e) {
+            var $category = $(this).data('id');
+            momentsFeed = moments.filter(function(moment){
+               return moment.categories.includes($category);
+            })
         })
         //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment
-        moments = json;
+        momentsFeed = json.map(function(moment){
+          return {
+            message: moment.message,
+            categories: moment.categories,
+            location: moment.location
+          }
+        })
+        moments = momentsFeed;
+        console.log(momentsFeed)
         select3();
     }
-    //function that pushes moments message and categories into array
-
-    //checks if moment feed has 3 moments inside. empties if it does.
+    //checks if moment feed has 3 moments inside.
     function select3() {
         var nOfMoments = $momentsFeed.children().length;
-        //is there 3 moments?
+        //toggle 2nd child class popout
+        if (nOfMoments > 0) {
+            $('.moment:nth-child(2)').toggleClass('z-depth-5');
+        }
+        //remove first child
         if (nOfMoments === 3) {
-            console.log(nOfMoments);
-            $momentsFeed.empty();
+            // console.log(topChild);
+            $('.moment:first').detach();
             return select3();
         }
+
         //render the first moment in collection
-        render(moments.shift());
+        render(momentsFeed.shift());
     }
     //appends data to moments feed section every 3 seconds
     function render(data) {
         $momentsFeed.append(momentHB({
             moment: data
         }));
-        //pushes the data back into the moments collection 
-        moments.push(data);
-        setTimeout(function() {
-            select3();
-        }, 3000);
+        // $('.collapsible').collapsible();
+        //pushes the data back into the moments collection
+        momentsFeed.push(data);
+        setTimeout(select3, 3000);
     }
 
     function handleError(err) {
         console.log('error in moments', err);
     }
-
-
+    //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
 
         $('#momentsFeed input').val('');
         moments.push(json);
-        render();
     }
 
 });
