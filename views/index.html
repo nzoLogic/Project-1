@@ -45,9 +45,9 @@
             </div>
         </section>
         <!-- drop arrow footer -->
-        <footer class="page-footer">
-            <a href="#Moments"><i class="material-icons large">arrow_drop_down</i></a>
-        </footer>
+        <div class="fixed-action-btn">
+            <a class="left" href="#Moments"><i class="material-icons medium">mode_edit</i></a>
+        </div>
     </main>
     <section class="parallax-container">
         <div class="parallax"><img src="images/earth-clouds.jpg">
@@ -92,7 +92,7 @@
     </section>
 
     <div class="parallax-container">
-      <div class="map"></div>
+      <!-- <div class="map"></div> -->
         <div class="parallax"><img src="images/sanFrancisco.jpg">
         </div>
     </div>
@@ -110,23 +110,26 @@
         </nav>
     </header> -->
     <main>
-        <section class="moment-section row section">
-          <ul class="tabs red extended-nav col s2">
-              <li class="tab col s6"><a href="#categoryDropdown">Categories</a></li>
-              <li class="tab col s6"><a href="map">Map</a></li>
-              <li class="tab col s3"><a href="#">Perspective</a></li>
-              <li class="tab col s3"><a href="#">Inspiring</a></li>
-              <li class="tab col s3"><a href="#">Motivating</a></li>
-              <li class="tab col s3"><a href="#">Life Changes</a></li>
+        <section class="moment-section row">
+          <div class="col s1">
+          <ul>
+              <li class="col s6"><a class="dropdown-button btn" href="#!" data-activates="categoryDropdown">Categories</a></li>
+              <li class="col s6 btn"><a href="#!" class="mapInit">Map</a></li>
           </ul>
-            <div  class="col s6 offset-s1 parallax-container">
+        </div>
+          <ul class="dropdown-content categories" id="categoryDropdown">
+          <li><a data-id="perspective" href="#!">Perspective</a></li>
+          <li><a data-id="inspiring"href="#!">Inspiring</a></li>
+          <li><a data-id="motivating"href="#!">Motivating</a></li>
+          <li><a data-id="life changes"href="#!">Life Changes</a></li>
+        </ul>
+            <div  class="col s6 parallax-container offset-s1">
               <div id="momentsFeed"></div>
             </div>
             <!--Map -->
-            <!-- <div class="map col s4"></div> -->
+            <div class="map col s4"></div>
         </section>
     </main>
-    <!-- slide out menu for filtering moments -->
     <!-- Handlebars template -->
     <script id="" type="text/x-handlebars-template">
         <ul class="collapsible" data-collapsible="accordion">

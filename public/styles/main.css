@@ -27,17 +27,10 @@ main {
 nav styling
 ************/
 .nav-wrapper {
-  background-color: #CD01F0;
-}
-li a {
-  color: #FCF2FE !important;
+  background-color: #0159f0;
 }
 
-.material-icons {
-  text-shadow: 2px 2px 5px black;
-  transition: .5s;
-  font-size: 32px;
-}
+
 
 /*********
 Home Page styling
@@ -65,9 +58,7 @@ Map & Moments feed styling
   height: 60vh;
   background-color: #666;
 }
-.moment-section .nav-wrapper {
-  height: 100% !important;
-}
+
 .map {
   height: 100%;
 }

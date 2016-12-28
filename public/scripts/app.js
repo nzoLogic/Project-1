@@ -14,6 +14,11 @@ $(document).ready(function() {
     $('ul.tabs').tabs();
     //materialize button collapsible
     $('.button-collapse').sideNav();
+    //dropdown hover
+    $('.dropdown-button').dropdown({
+      hover: true,
+      belowOrigin: true
+      });
 
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
@@ -45,10 +50,10 @@ $(document).ready(function() {
 
 
     //event listener for categories sideNav
-    $('.categories').click(function(e) {
+    $('#categoryDropdown').on('click', 'a',function(e) {
             var $category = $(this).data('id');
-            momentsFeed.forEach(function(moment){
-              console.log(moment.categories.indexOf($category))
+            momentsFeed = moments.filter(function(moment){
+               return moment.categories.includes($category);
             })
         })
         //handles successfull GET req for all moments
@@ -83,7 +88,7 @@ $(document).ready(function() {
         render(momentsFeed.shift());
     }
     //appends data to moments feed section every 3 seconds
-    function render(data, filter) {
+    function render(data) {
         $momentsFeed.append(momentHB({
             moment: data
         }));

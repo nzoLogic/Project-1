@@ -14,15 +14,13 @@ function allMoments(req, res){
 //POST /api/moments
 function post(req, res){
   //saves req body into variable
-  var newMoment = new db.Moment(req.body),
-      locationName = req.body.location;
-  // find moments location to update embedded moments
+  var newMoment = new db.Moment(req.body);
+    // find moments location to update embedded moments
   newMoment.save(function(err, saveMoment){
       if(err){
         console.log('error on moment save', err);
       }
       else{
-        Locations.update(locationName, saveMoment)
         res.json(saveMoment);
       }
   })
