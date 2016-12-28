@@ -62,8 +62,8 @@ form styling
 Map & Moments feed styling
 ***********/
 .moment-section {
-  height: 75vh;
-  /*background-color: #FF8E58;*/
+  height: 65vh;
+  background-color: #FF8E58;
 }
 .map {
   height: 100%;

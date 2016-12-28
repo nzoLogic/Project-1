@@ -57,7 +57,7 @@ $(document).ready(function() {
         momentsFeed = json.map(function(moment){
           return {
             message: moment.message,
-            categories: [moment.categories],
+            categories: moment.categories,
             location: moment.location
           }
         })
@@ -70,12 +70,12 @@ $(document).ready(function() {
         var nOfMoments = $momentsFeed.children().length;
         //toggle 2nd child class popout
         if (nOfMoments > 0) {
-            $('.collapsible:nth-child(2)').toggleClass('popout');
+            $('.moment:nth-child(2)').toggleClass('z-depth-5');
         }
         //remove first child
         if (nOfMoments === 3) {
             // console.log(topChild);
-            $('.collapsible:first').detach();
+            $('.moment:first').detach();
             return select3();
         }
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
         $momentsFeed.append(momentHB({
             moment: data
         }));
-        $('.collapsible').collapsible();
+        // $('.collapsible').collapsible();
         //pushes the data back into the moments collection
         momentsFeed.push(data);
         setTimeout(select3, 3000);
