@@ -10,20 +10,19 @@ main {
   flex: 1 0 auto;
 }
 .header {
-  color: #4700B7;
+  color: #fff;
 }
 .parallax-container {
   height: 50vh;
   margin-bottom: 0;
 }
-main {
-  /*height: 100vh;*/
-}
+
 .page-footer  {
   margin-top: 0 !important;
   text-align: center;
   background-color: #CD01F0 !important;
 }
+
 /*********
 nav styling
 ************/
@@ -49,6 +48,7 @@ Home Page styling
 }
 .home {
   height: 80vh;
+  background-color: rgba(0,0,0,.5);
 }
 /**********
 form styling
@@ -62,8 +62,11 @@ form styling
 Map & Moments feed styling
 ***********/
 .moment-section {
-  height: 65vh;
-  background-color: #FF8E58;
+  height: 60vh;
+  background-color: #666;
+}
+.moment-section .nav-wrapper {
+  height: 100% !important;
 }
 .map {
   height: 100%;
