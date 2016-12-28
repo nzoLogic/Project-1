@@ -58,14 +58,13 @@ Map & Moments feed styling
   height: 60vh;
   background-color: #666;
 }
-<<<<<<< HEAD
-#map {
-  height: inherit;
-=======
+
+
+
+
 
 .map {
   height: 100%;
->>>>>>> d44e2cf882ad4ccda8d72c88376c59c599497d1a
 }
 
 #momentsFeed {

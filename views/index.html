@@ -16,8 +16,6 @@
     <script src="scripts/app.js"></script>
     <!-- local css -->
     <link rel="stylesheet" href="styles/main.css" type="text/css">
-    <!-- Maps script -->
-    <script src="scripts/maps.js"></script>
     <!-- Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Maps Key -->
@@ -60,15 +58,15 @@
             <form class="col s6 offset-s3" id="momentForm">
                 <div class="row">
                     <!-- Location Selector -->
-                  <div class="input-field col s6">
-                    <select name="location">
+                    <div class="input-field col s6">
+                        <select name="location">
                         <option value="" disabled selected>Choose your location</option>
                         <option>South of Market</option>
                         <option>Richmond District</option>
                         <option>Mission District</option>
                         <option>Financial district</option>
                     </select>
-                  </div>
+                    </div>
                     <!-- Category Selector -->
                     <div class="input-field col s6">
                         <select multiple name="categories" min="1">
@@ -117,21 +115,6 @@
               <li class="col s6 btn"><a href="#!" class="mapInit">Map</a></li>
           </ul>
         </div>
-<<<<<<< HEAD
-        <!-- Moment Feed -->
-        <section class="row moment-section">
-        <div class="section-white col s2">
-          <!-- <ul id="slide-out" class="side-nav"> -->
-            <a class="btn-flat categories" id="inspiring">Inspiring</a>
-            <a class="btn-flat categories" id="motivating">Motivating</a>
-            <a class="btn-flat categories" id="lifeChanges">Life Changes</a>
-            <a class="btn-flat categories" id="perspective">Perspective</a>
-          <!-- </ul> -->
-          </div>
-          <div id = "momentsFeed" class="col s5">
-          </div>
-          <div class="col s5" id="map"></div>
-=======
           <ul class="dropdown-content categories" id="categoryDropdown">
           <li><a data-id="perspective" href="#!">Perspective</a></li>
           <li><a data-id="inspiring"href="#!">Inspiring</a></li>
@@ -143,7 +126,6 @@
             </div>
             <!--Map -->
             <div class="map col s4"></div>
->>>>>>> d44e2cf882ad4ccda8d72c88376c59c599497d1a
         </section>
     </main>
     <!-- Handlebars template -->
