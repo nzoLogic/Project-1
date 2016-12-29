@@ -123,11 +123,17 @@ $(document).ready(function() {
     var mapOptions = {
         center: new google.maps.LatLng(37.7831, -122.4039),
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
     var map = new google.maps.Map(document.getElementsByClassName('map')[0], mapOptions);
-
     var markerContainer = [];
+
+    // var infoWindow = new google.maps.InfoWindow({
+    //     map: map
+    // });
+    var options = {imagePath: '../somer/'};
+    var markerCluster = new MarkerClusterer(map, options);
+
     //toggle map display
     $('.mapInit').click(function(e) {
         $('.map').toggle('display');
@@ -139,7 +145,7 @@ $(document).ready(function() {
     ///iterates through collections of location, and stores them.
     function locationContainer(collections) {
         collections.forEach(function(collection) {
-            markerContainer.push(collection)
+            // markerContainer.push(collection)
             renderMarker(collection.location);
         });
     }
@@ -147,15 +153,12 @@ $(document).ready(function() {
     function renderMarker(loc) {
         // console.log(loc);
         var marker = new google.maps.Marker({
-            map: map,
-            position: loc
+            position: loc,
+            animation: google.maps.Animation.DROP
         });
+        markerCluster.addMarker(marker);
+        markerContainer.push(marker);
     }
-
-    // current location
-    var infoWindow = new google.maps.InfoWindow({
-        map: map
-    });
 
     function currentLocation() {
         // Try HTML5 geolocation.
@@ -170,15 +173,12 @@ $(document).ready(function() {
                 // infoWindow.setContent('Moment');
                 // map.setCenter(pos);
             });
-
-
           }
-
+          else {
+            alert("Looks like your browser doesn't support geocoding!");
+          }
     }
-    // currentLocation();
-    // navigator.geolocation.getCurrentPosition(function(pos){
-    //   console.log(pos);
-    // })
+
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
