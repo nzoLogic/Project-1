@@ -57,18 +57,14 @@
         <div class="row">
             <form class="col s6 offset-s3" id="momentForm">
                 <div class="row">
-                    <!-- Location Selector -->
-                    <div class="input-field col s6">
-                        <select name="location">
-                        <option value="" disabled selected>Choose your location</option>
-                        <option>South of Market</option>
-                        <option>Richmond District</option>
-                        <option>Mission District</option>
-                        <option>Financial district</option>
-                    </select>
+                    <div class="input-field col s12">
+                        <textarea id="textarea1" name="message" class="materialize-textarea" required length="280"></textarea>
+                        <label for="textarea1">Share your moments</label>
                     </div>
+                </div>
+                <div class="row">
                     <!-- Category Selector -->
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
                         <select multiple name="categories" min="1">
                           <option value="" disabled selected>Choose your categories</option>
                           <option>Inspiring</option>
@@ -79,18 +75,16 @@
                     </div>
                     <!-- Moment Input -->
                     <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea1" name="message" class="materialize-textarea" required length="280"></textarea>
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-                            <label for="textarea1">Share your moments</label>
-                        </div>
-                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                        <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
+                        <label for="geoLoc">Location</label>
+                  </div>
                 </div>
             </form>
     </section>
 
     <div class="parallax-container">
-      <!-- <div class="map"></div> -->
+        <!-- <div class="map"></div> -->
         <div class="parallax"><img src="images/sanFrancisco.jpg">
         </div>
     </div>
@@ -109,20 +103,20 @@
     </header> -->
     <main>
         <section class="moment-section row">
-          <div class="col s1">
-          <ul>
-              <li class="col s6"><a class="dropdown-button btn" href="#!" data-activates="categoryDropdown">Categories</a></li>
-              <li class="col s6 btn"><a href="#!" class="mapInit">Map</a></li>
-          </ul>
-        </div>
-          <ul class="dropdown-content categories" id="categoryDropdown">
-          <li><a data-id="perspective" href="#!">Perspective</a></li>
-          <li><a data-id="inspiring"href="#!">Inspiring</a></li>
-          <li><a data-id="motivating"href="#!">Motivating</a></li>
-          <li><a data-id="life changes"href="#!">Life Changes</a></li>
-        </ul>
-            <div  class="col s6 parallax-container offset-s1">
-              <div id="momentsFeed"></div>
+            <div class="col s1">
+                <ul>
+                    <li class="col s6"><a class="dropdown-button btn" href="#!" data-activates="categoryDropdown">Categories</a></li>
+                    <li class="col s6 btn"><a href="#!" class="mapInit">Map</a></li>
+                </ul>
+            </div>
+            <ul class="dropdown-content categories" id="categoryDropdown">
+                <li><a data-id="perspective" href="#!">Perspective</a></li>
+                <li><a data-id="inspiring" href="#!">Inspiring</a></li>
+                <li><a data-id="motivating" href="#!">Motivating</a></li>
+                <li><a data-id="life changes" href="#!">Life Changes</a></li>
+            </ul>
+            <div class="col s6 parallax-container offset-s1">
+                <div id="momentsFeed"></div>
             </div>
             <!--Map -->
             <div class="map col s4"></div>

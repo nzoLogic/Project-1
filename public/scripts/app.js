@@ -36,6 +36,7 @@ $(document).ready(function() {
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
         e.preventDefault();
+        console.log(this);
         $.ajax({
             method: 'POST',
             url: '/api/moments',
@@ -124,20 +125,27 @@ $(document).ready(function() {
         $('.map').toggle('display');
     })
 
+    //checks if location radio is checked
+    $('#geoLoc').click(function(e,next) {
+        // console.log($(this));
+        // var userLocation = currentLocation();
+        currentLocation();
+    })
+
     ///iterates through collections of location, and stores them.
     function locationContainer(collections) {
         collections.forEach(function(collection) {
-            locationContainer.push(collection)
+            markerContainer.push(collection)
             renderMarker(collection.location);
         });
     }
     //renders markers to map
-    function renderMarker(loc){
-      console.log(loc);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: loc
-      });
+    function renderMarker(loc) {
+        // console.log(loc);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: loc
+        });
     }
 
     // current location
@@ -146,28 +154,28 @@ $(document).ready(function() {
     });
 
     function currentLocation() {
-
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-                console.log(pos);
-
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                map.setCenter(pos);
-            }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
+          navigator.geolocation.getCurrentPosition(function(position) {
+            console.log('inside getCurrentPosition');
+            var test =
+               'l' + position.coords.latitude +
+               'l' + position.coords.longitude;
+            console.log(test)
+            $('#geoLoc').val(test);
+                // infoWindow.setPosition(pos);
+                // infoWindow.setContent('Moment');
+                // map.setCenter(pos);
             });
-        } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-        }
-    }
 
+
+          }
+
+    }
+    // currentLocation();
+    // navigator.geolocation.getCurrentPosition(function(pos){
+    //   console.log(pos);
+    // })
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?

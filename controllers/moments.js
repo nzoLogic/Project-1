@@ -14,6 +14,9 @@ function allMoments(req, res){
 //POST /api/moments
 function post(req, res){
   //saves req body into variable
+  var location = getLatLng(req.body.location);
+  req.body.location = location;
+  console.log(location)
   var newMoment = new db.Moment(req.body);
     // find moments location to update embedded moments
   newMoment.save(function(err, saveMoment){
@@ -21,11 +24,18 @@ function post(req, res){
         console.log('error on moment save', err);
       }
       else{
+        console.log(saveMoment)
         res.json(saveMoment);
       }
   })
 }
-
+function getLatLng(strings){
+  var arr = strings.split('l');
+  return {
+    lat : parseFloat(arr[1]),
+    lng: parseFloat(arr[2])
+  }
+}
 //DELETE last moment
 // function remove(req, res){
 //   db.Moment.find
