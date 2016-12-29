@@ -24,22 +24,22 @@ function post(req, res){
         console.log('error on moment save', err);
       }
       else{
-        console.log(saveMoment)
         res.json(saveMoment);
       }
   })
 }
+//returns an object with key value pairs of lat lng
 function getLatLng(strings){
+  if(strings === 'unknown'){
+    return strings;
+  }
   var arr = strings.split('l');
   return {
     lat : parseFloat(arr[1]),
     lng: parseFloat(arr[2])
   }
 }
-//DELETE last moment
-// function remove(req, res){
-//   db.Moment.find
-// }
+
 module.exports = {
   allMoments: allMoments,
   post: post,
