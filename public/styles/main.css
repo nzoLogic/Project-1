@@ -70,3 +70,10 @@ Map & Moments feed styling
 #momentsFeed {
   height: 100%;
 }
+
+
+.scroll {
+    width: 700px;
+    height: 300px;
+    overflow: scroll;
+}
