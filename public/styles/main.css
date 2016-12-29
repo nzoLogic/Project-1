@@ -15,6 +15,7 @@ main {
 .parallax-container {
   height: 50vh;
   margin-bottom: 0;
+
 }
 
 .page-footer  {
@@ -26,9 +27,11 @@ main {
 /*********
 nav styling
 ************/
-.nav-wrapper {
-  background-color: #0159f0;
-}
+/*.nav-wrapper {
+  background-color: #FFFFFF; opacity: 0.5; filter: alpha(opacity=50);
+
+}*/
+
 
 
 
@@ -41,7 +44,7 @@ Home Page styling
 }
 .home {
   height: 80vh;
-  background-color: rgba(0,0,0,.5);
+  /*background-color: rgba(0,0,0,.5);*/
 }
 /**********
 form styling
@@ -73,7 +76,7 @@ Map & Moments feed styling
 
 
 .scroll {
-    width: 700px;
+    width: 600px;
     height: 300px;
     overflow: scroll;
 }
