@@ -36,7 +36,6 @@ $(document).ready(function() {
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
         e.preventDefault();
-        console.log(this);
         $.ajax({
             method: 'POST',
             url: '/api/moments',
@@ -60,17 +59,19 @@ $(document).ready(function() {
         //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment
-        momentsFeed = json.map(function(moment) {
-            return {
-                message: moment.message,
-                categories: moment.categories,
-                location: moment.location
-            }
-        })
+        momentsFeed = json.map(sortMoment)
         moments = momentsFeed;
         console.log(momentsFeed)
         select3();
         locationContainer(moments);
+    }
+    //call back function for returning data we want
+    function sortMoment(obj){
+      return {
+       message : obj.message,
+       categories : obj.categories,
+       location : obj.location
+     }
     }
     //checks if moment feed has 3 moments inside.
     function select3() {
@@ -104,13 +105,20 @@ $(document).ready(function() {
     }
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-
+      var newMome = sortMoment(json);
+      console.log('moments is ', json);
+      console.log('moments location is ', json.location);
         $('#momentsFeed input').val('');
-        moments.push(json);
+        moments.push(newMome);
+
+        renderMarker(newMome.location)
     }
+/*******************************************************************
 
+                        MAP section
 
-    // MAP MAP MAP MAP MAP MAP MAP MAP MAP MAP
+*******************************************************************/
+
     //maps initial options
     var mapOptions = {
         center: new google.maps.LatLng(37.7831, -122.4039),
@@ -126,11 +134,7 @@ $(document).ready(function() {
     })
 
     //checks if location radio is checked
-    $('#geoLoc').click(function(e,next) {
-        // console.log($(this));
-        // var userLocation = currentLocation();
-        currentLocation();
-    })
+    $('#geoLoc').click(currentLocation);
 
     ///iterates through collections of location, and stores them.
     function locationContainer(collections) {
@@ -157,7 +161,6 @@ $(document).ready(function() {
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            console.log('inside getCurrentPosition');
             var test =
                'l' + position.coords.latitude +
                'l' + position.coords.longitude;
