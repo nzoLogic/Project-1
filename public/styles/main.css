@@ -11,9 +11,11 @@ body {
 #heaven{
   position: relative;
   display: block;
-  height: 550px;
-  width: 1200px;
+  /*height: 550px;
+  width: 1200px;*/
   margin-left: 25px;
+  background-size: cover;
+
 }
 
 .welcome {
