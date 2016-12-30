@@ -5,31 +5,52 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    margin: 0 auto;
+    background-image: url('../images/gradient.jpg');
+    background-size: cover;
+    /*background-color: #d6d6d6;*/
+}
+
+.navbar-fixed  {
+  font-family: 'Questrial', sans-serif;
+  background-color: transparent;
+  color: #fef475;
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  z-index: 1;
+  height: 15vh;
+}
+.name {
+  font-weight: 800;
+  position: fixed;
+  left: 23px;
+  text-shadow: 4px 4px 7px #000;
 }
 main {
   flex: 1 0 auto;
+  height: 85vh;
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.header {
-  color: #fff;
+.menu {
+  position: fixed;
+  right: 23px;
+  top: 23px;
+  padding-top: 15px;
+  margin-top: 0;
+  z-index: 998;
 }
-.parallax-container {
-  height: 50vh;
-  margin-bottom: 0;
+.menu a {
+  background-color: #110dd4 !important;
 }
-
-.page-footer  {
-  margin-top: 0 !important;
-  text-align: center;
-  background-color: #CD01F0 !important;
+.form-icon {
+  background-color: #e84343 !important;
 }
-
+.frost {
+  background-color: rgba(255,255,255,.5);
+}
 /*********
 nav styling
 ************/
-.nav-wrapper {
-  background-color: #0159f0;
-}
-
 
 
 /*********
@@ -39,41 +60,27 @@ Home Page styling
 .input-field, option {
   font-size: 1.2em;
 }
-.home {
-  height: 80vh;
-  background-color: rgba(0,0,0,.5);
-}
+
 /**********
 form styling
 ***********/
-.form-section {
-  margin-top: 0 !important;
-}
-
 
 /***********
 Map & Moments feed styling
 ***********/
 .moment-section {
-  height: 60vh;
-  background-color: #666;
+  height: 80vh;
+}
+.moment {
+  background-color: rgba(255, 58, 58, .95);
 }
 
-
-
-
-
+.moment-container {
+  overflow: scroll;
+}
+.moment-container, .map {
+  height: 100% ;
+}
 .map {
-  height: 100%;
-}
-
-#momentsFeed {
-  height: 100%;
-}
-
-
-.scroll {
-    width: 700px;
-    height: 300px;
-    overflow: scroll;
+  margin: 0.5rem 0 .5rem 0;
 }

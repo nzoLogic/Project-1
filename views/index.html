@@ -22,42 +22,69 @@
     <script src="https://maps.googleapis.com/maps/api/js?" async defer></script>
     <!-- Marker Cluster  -->
     <script src="scripts/markerclusterer.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Questrial" rel="stylesheet">
 </head>
 
 
 <body>
-    <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#momentsFeed">Moments</a></li>
-                    <li><a href="#">Humanity</a></li>
-                    <li><a href="#">Admin</a></li>
-                </ul>
-            </div>
-        </nav>
+    <header class="navbar-fixed z-depth-5 frost">
+        <h1 class="name">Project</h1>
+
     </header>
-    <main>
-        <section class="parallax-container home valign-wrapper">
-            <h1 class="header valign">this is an introductory message for our site....</h1>
-            <div class="parallax"><img src="images/heaven.jpg">
+    <div class="menu">
+        <a href="#!" data-activates="slide-out" class="button-collapse btn-floating btn-large"><i class="material-icons">menu</i></a>
+    </div>
+    <!-- Moment Feed -->
+    <main class="section">
+        <section class="moment-section row">
+              <div class="moment-container col s10 offset-s1 offset-m1 m5 z-depth-5 frost" id="momentsFeed">
+                <div id="momentsFeed"></div>
+              </div>
+            <!--Map -->
+            <div class="col s10 offset-s1 offset-m1 m4 z-depth-5 frost hide-on-small-only moment-container">
+              <div class="map"></div>
+            </div>
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large waves-effect waves-light form-icon" href="#momentForm"><i class="material-icons">mode_edit</i></a>
             </div>
         </section>
-        <!-- drop arrow footer -->
-        <div class="fixed-action-btn">
-            <a class="left" href="#Moments"><i class="material-icons medium">mode_edit</i></a>
-        </div>
     </main>
-    <section class="parallax-container">
-        <div class="parallax"><img src="images/earth-clouds.jpg">
-    </section>
-    <!-- Moment form section -->
-    <section class="section form-section" id="Moments">
-        <h2 class="header">Share A Moment</h2>
-        <!-- Moment Form  -->
-        <div class="row">
-            <form class="col s6 offset-s3" id="momentForm">
+    <!-- Menu slideout nav -->
+    <ul id="slide-out" class="side-nav">
+        <li>
+            <h4 class="center">Categories</h4></li>
+        <li class="divider"></li>
+        <li>
+            <form class="container" id="categoryFilter">
+                <p>
+                    <input data-id="inspiring"type="checkbox" id="inspiring" />
+                    <label for="inspiring">Inspiring</label>
+                </p>
+                <p>
+                    <input data-id="motivating"type="checkbox" id="motivating" />
+                    <label for="motivating">Motivating</label>
+                </p>
+                <p>
+                    <input data-id="life changes"type="checkbox" id="lifeChanges" />
+                    <label for="lifeChanges">Life Changes</label>
+                </p>
+                <p>
+                    <input data-id="perspective"type="checkbox" id="perspective" />
+                    <label for="perspective">Perspective</label>
+                </p>
+            </form>
+          </li>
+          <li class="divider"></li>
+          <br />
+        <li> <h4 class="center">Map</h4></li>
+        <li class="divider"></li>
+    </ul>
+
+    <!-- Moment form modal -->
+    <section class="modal" id="momentForm">
+        <div class="row modal-content">
+            <form class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="textarea1" name="message" class="materialize-textarea" required length="280"></textarea>
@@ -65,7 +92,6 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- Category Selector -->
                     <div class="input-field col s12">
                         <select multiple name="categories" min="1">
                           <option value="" disabled selected>Choose your categories</option>
@@ -75,82 +101,24 @@
                           <option>Perspective</option>
                       </select>
                     </div>
-                    <!-- Moment Input -->
-                    <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                    <div class="row modal-footer">
+                        <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="action">Submit</button>
                         <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
                         <label for="geoLoc">Location</label>
-                  </div>
+                    </div>
                 </div>
             </form>
     </section>
-
-    <div class="parallax-container">
-        <!-- <div class="map"></div> -->
-        <div class="parallax"><img src="images/sanFrancisco.jpg">
-        </div>
-    </div>
-    <!-- Moment Feed -->
-    <!-- <header>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Logo</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#momentsFeed">Moments</a></li>
-                    <li><a href="#">Humanity</a></li>
-                    <li><a href="#">Admin</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header> -->
-    <main>
-        <section class="moment-section row">
-            <div class="col s1">
-                <ul>
-                    <li class="col s6"><a class="dropdown-button btn" href="#!" data-activates="categoryDropdown">Categories</a></li>
-                    <li class="col s6 btn"><a href="#!" class="mapInit">Map</a></li>
-                </ul>
-            </div>
-            <ul class="dropdown-content categories" id="categoryDropdown">
-                <li><a data-id="perspective" href="#!">Perspective</a></li>
-                <li><a data-id="inspiring" href="#!">Inspiring</a></li>
-                <li><a data-id="motivating" href="#!">Motivating</a></li>
-                <li><a data-id="life changes" href="#!">Life Changes</a></li>
-            </ul>
-            <div class="col s6 parallax-container offset-s1">
-                <div class="scroll" id="momentsFeed"></div>
-            </div>
-            <!--Map -->
-            <div class="map col s4"></div>
-        </section>
-    </main>
-    <!-- Handlebars template -->
-    <script id="" type="text/x-handlebars-template">
-        <ul class="collapsible" data-collapsible="accordion">
-            <li>
-                <div class="collapsible-header active">{{moment.categories}}</div>
-                <div class="collapsible-body">
-                    <p>{{moment.message}}</p>
-                </div>
-            </li>
-        </ul>
-    </script>
     <!-- Handlebars UI test template -->
     <script id="moments-template" type="text/x-handlebars-template">
-        <div class="card blue-grey darken-1 moment">
-
+        <div class="card moment">
             <div class="card-content white-text">
                 <!-- <span class="card-title">Card Title</span> -->
-                <p>{{moment.message}}</p>
+                <p class="flow-text">{{moment.message}}</p>
             </div>
             <div class="card-action">
                 {{#each moment.categories}}
                 <a href="#">{{this}}</a> {{/each}}
-
     </script>
-
-
 </body>
-
-
 </html>

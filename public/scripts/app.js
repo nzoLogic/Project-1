@@ -14,12 +14,16 @@ $(document).ready(function() {
         // Tabs
     $('ul.tabs').tabs();
     //materialize button collapsible
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+      edge: 'right'
+    });
     //dropdown hover
     $('.dropdown-button').dropdown({
         hover: true,
         belowOrigin: true
     });
+    // model
+    $('.modal').modal();
 
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
@@ -51,8 +55,9 @@ $(document).ready(function() {
 
 
     //event listener for categories sideNav
-    $('#categoryDropdown').on('click', 'a', function(e) {
+    $('#categoryFilter').on('click', 'a', function(e) {
             var $category = $(this).data('id');
+            console.log($(this));
             momentsFeed = moments.filter(function(moment) {
                 return moment.categories.includes($category);
             })
