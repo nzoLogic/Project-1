@@ -1,82 +1,26 @@
-/**********
-Universals
-**********/
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  min-height: 2000px;
+  padding-top: 70px;
 }
-main {
-  flex: 1 0 auto;
-}
-.header {
-  color: #fff;
-}
-.parallax-container {
-  height: 50vh;
-  margin-bottom: 0;
-
+.navbar-default {
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
 }
 
-.page-footer  {
-  margin-top: 0 !important;
-  text-align: center;
-  background-color: #CD01F0 !important;
+#heaven{
+  position: relative;
+  display: block;
+  height: 550px;
+  width: 1200px;
+  margin-left: 25px;
 }
 
-/*********
-nav styling
-************/
-/*.nav-wrapper {
-  background-color: #FFFFFF; opacity: 0.5; filter: alpha(opacity=50);
-
-}*/
-
-
-
-
-/*********
-Home Page styling
-***********/
-
-.input-field, option {
-  font-size: 1.2em;
-}
-.home {
-  height: 80vh;
-  /*background-color: rgba(0,0,0,.5);*/
-}
-/**********
-form styling
-***********/
-.form-section {
-  margin-top: 0 !important;
-}
-
-
-/***********
-Map & Moments feed styling
-***********/
-.moment-section {
-  height: 60vh;
-  background-color: #666;
-}
-
-
-
-
-
-.map {
-  height: 100%;
-}
-
-#momentsFeed {
-  height: 100%;
-}
-
-
-.scroll {
-    width: 600px;
-    height: 300px;
-    overflow: scroll;
+.welcome {
+  position: absolute;
+  top: 500px;
+  left: 900px;
+  width: 100%;
+  font-family: 'Questrial', sans-serif;
+  font-size: 50px;
+  color: #e0e0e0;
 }

@@ -21,6 +21,7 @@ $(document).ready(function() {
         belowOrigin: true
     });
 
+
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
     var momentSource = $('#moments-template').html();
@@ -114,7 +115,6 @@ $(document).ready(function() {
 
         renderMarker(newMome.location)
     }
-
 
 /*******************************************************************
                         MAP section
