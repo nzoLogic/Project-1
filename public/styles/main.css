@@ -1,1 +1,89 @@
+/**********
+Universals
+**********/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0 auto;
+    /*background-image: url('../images/gradient.jpg');*/
+    background-color: white;
+    background-size: cover;
+    /*background-color: #d6d6d6;*/
+}
 
+.navbar-fixed  {
+  font-family: 'Questrial', sans-serif;
+  background-color: transparent;
+  color: rgba(68, 68, 68, 0.84);
+  /*box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);*/
+  z-index: 1;
+  height: 15vh;
+}
+.name {
+  font-weight: 800;
+  position: fixed;
+  left: 23px;
+  text-shadow: 4px 4px 7px #000;
+  top: -15px;
+}
+main {
+  flex: 1 0 auto;
+  height: 85vh;
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.menu {
+  position: fixed;
+  right: 23px;
+  top: 23px;
+  padding-top: 15px;
+  margin-top: 0;
+  z-index: 998;
+}
+.menu a {
+  background-color: #110dd4 !important;
+}
+.form-icon {
+  background-color: #e84343 !important;
+}
+.frost {
+  background-color: rgba(255,255,255,.5);
+}
+/*********
+nav styling
+************/
+
+
+/*********
+Home Page styling
+***********/
+
+.input-field, option {
+  font-size: 1.2em;
+}
+
+/**********
+form styling
+***********/
+
+/***********
+Map & Moments feed styling
+***********/
+.moment-section {
+  height: 80vh;
+}
+.moment {
+  
+  background-color: rgba(116, 108, 99, 0.97);
+}
+
+.moment-container {
+  overflow: scroll;
+}
+.moment-container, .map {
+  height: 100% ;
+}
+.map {
+  margin: 0.5rem 0 .5rem 0;
+}

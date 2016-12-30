@@ -14,13 +14,16 @@ $(document).ready(function() {
         // Tabs
     $('ul.tabs').tabs();
     //materialize button collapsible
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+      edge: 'right'
+    });
     //dropdown hover
     $('.dropdown-button').dropdown({
         hover: true,
         belowOrigin: true
     });
-
+    // model
+    $('.modal').modal();
 
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
@@ -52,8 +55,9 @@ $(document).ready(function() {
 
 
     //event listener for categories sideNav
-    $('#categoryDropdown').on('click', 'a', function(e) {
+    $('#categoryFilter').on('click', 'a', function(e) {
             var $category = $(this).data('id');
+            console.log($(this));
             momentsFeed = moments.filter(function(moment) {
                 return moment.categories.includes($category);
             })
@@ -112,10 +116,8 @@ $(document).ready(function() {
       console.log('moments location is ', json.location);
         $('#momentsFeed input').val('');
         moments.push(newMome);
-
         renderMarker(newMome.location)
     }
-
 /*******************************************************************
                         MAP section
 *******************************************************************/
@@ -124,11 +126,17 @@ $(document).ready(function() {
     var mapOptions = {
         center: new google.maps.LatLng(37.7831, -122.4039),
         zoom: 12,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
     var map = new google.maps.Map(document.getElementsByClassName('map')[0], mapOptions);
-
     var markerContainer = [];
+
+    // var infoWindow = new google.maps.InfoWindow({
+    //     map: map
+    // });
+    var options = {imagePath: '../somer/'};
+    var markerCluster = new MarkerClusterer(map, options);
+
     //toggle map display
     $('.mapInit').click(function(e) {
         $('.map').toggle('display');
@@ -140,7 +148,7 @@ $(document).ready(function() {
     ///iterates through collections of location, and stores them.
     function locationContainer(collections) {
         collections.forEach(function(collection) {
-            markerContainer.push(collection)
+            // markerContainer.push(collection)
             renderMarker(collection.location);
         });
     }
@@ -148,15 +156,12 @@ $(document).ready(function() {
     function renderMarker(loc) {
         // console.log(loc);
         var marker = new google.maps.Marker({
-            map: map,
-            position: loc
+            position: loc,
+            animation: google.maps.Animation.DROP
         });
+        markerCluster.addMarker(marker);
+        markerContainer.push(marker);
     }
-
-    // current location
-    var infoWindow = new google.maps.InfoWindow({
-        map: map
-    });
 
     function currentLocation() {
         // Try HTML5 geolocation.
@@ -171,15 +176,12 @@ $(document).ready(function() {
                 // infoWindow.setContent('Moment');
                 // map.setCenter(pos);
             });
-
-
           }
-
+          else {
+            alert("Looks like your browser doesn't support geocoding!");
+          }
     }
-    // currentLocation();
-    // navigator.geolocation.getCurrentPosition(function(pos){
-    //   console.log(pos);
-    // })
+
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
