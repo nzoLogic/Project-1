@@ -55,13 +55,20 @@ $(document).ready(function() {
 
 
     //event listener for categories sideNav
-    $('#categoryFilter').on('click', 'a', function(e) {
-            var $category = $(this).data('id');
-            console.log($(this));
+    $('#categoryFilter').on('click', 'input', function(e) {
+            var $category = $(this).val();
             momentsFeed = moments.filter(function(moment) {
                 return moment.categories.includes($category);
             })
+            console.log(momentsFeed);
         })
+
+    //event listener for clearing filters
+    $('.clear').on('click',(function(e){
+      console.log('click');
+      $('input[type="checkbox"]').prop('checked', false);
+      momentsFeed = moments;
+    }));
         //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment

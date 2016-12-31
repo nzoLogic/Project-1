@@ -6,7 +6,8 @@ body {
     min-height: 100vh;
     flex-direction: column;
     margin: 0 auto;
-    background-image: url('../images/gradient.jpg');
+    /*background-image: url('../images/gradient.jpg');*/
+    background-color: white;
     background-size: cover;
     /*background-color: #d6d6d6;*/
 }
@@ -14,8 +15,8 @@ body {
 .navbar-fixed  {
   font-family: 'Questrial', sans-serif;
   background-color: transparent;
-  color: #fef475;
-  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  color: #417385;
+  /*box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);*/
   z-index: 1;
   height: 15vh;
 }
@@ -24,12 +25,13 @@ body {
   position: fixed;
   left: 23px;
   text-shadow: 4px 4px 7px #000;
+  top: -15px;
 }
 main {
   flex: 1 0 auto;
   height: 85vh;
   margin-top: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.08);
 }
 .menu {
   position: fixed;
@@ -40,7 +42,9 @@ main {
   z-index: 998;
 }
 .menu a {
-  background-color: #110dd4 !important;
+  background-color: rgba(68, 68, 68, 0.84) !important;
+  top: -15px;
+
 }
 .form-icon {
   background-color: #e84343 !important;
@@ -61,6 +65,11 @@ Home Page styling
   font-size: 1.2em;
 }
 
+.btn-floating{
+  color:black !important;
+}
+
+
 /**********
 form styling
 ***********/
@@ -72,7 +81,7 @@ Map & Moments feed styling
   height: 80vh;
 }
 .moment {
-  background-color: rgba(255, 58, 58, .95);
+background-color: rgba(184, 184, 184, 0.97);
 }
 
 .moment-container {
@@ -83,4 +92,12 @@ Map & Moments feed styling
 }
 .map {
   margin: 0.5rem 0 .5rem 0;
+}
+
+.card-content{
+  font-family: 'Inconsolata', monospace;
+}
+
+.card-action a{
+  color: #417385 !important;
 }

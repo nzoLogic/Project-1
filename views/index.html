@@ -46,7 +46,7 @@
               <div class="map"></div>
             </div>
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large waves-effect waves-light form-icon" href="#momentForm"><i class="material-icons">mode_edit</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light form-icon" href="#Form"><i class="material-icons">mode_edit</i></a>
             </div>
         </section>
     </main>
@@ -57,24 +57,27 @@
         <li class="divider"></li>
         <li>
             <form class="container" id="categoryFilter">
+              <div class="input-field col s12">
                 <p>
-                    <input data-id="inspiring"type="checkbox" id="inspiring" />
+                    <input data-id="inspiring"type="checkbox" id="inspiring" value="inspiring" />
                     <label for="inspiring">Inspiring</label>
                 </p>
                 <p>
-                    <input data-id="motivating"type="checkbox" id="motivating" />
+                    <input data-id="motivating"type="checkbox" id="motivating" value="motivating" />
                     <label for="motivating">Motivating</label>
                 </p>
                 <p>
-                    <input data-id="life changes"type="checkbox" id="lifeChanges" />
+                    <input data-id="life changes"type="checkbox" id="lifeChanges" value="life changes" />
                     <label for="lifeChanges">Life Changes</label>
                 </p>
                 <p>
-                    <input data-id="perspective"type="checkbox" id="perspective" />
+                    <input data-id="perspective"type="checkbox" id="perspective" value="perspective" />
                     <label for="perspective">Perspective</label>
                 </p>
+              </div>
             </form>
           </li>
+            <li><a class="waves-effect waves-light btn clear" href="#!">Clear Filters</a></li>
           <li class="divider"></li>
           <br />
         <li> <h4 class="center">Map</h4></li>
@@ -82,9 +85,9 @@
     </ul>
 
     <!-- Moment form modal -->
-    <section class="modal" id="momentForm">
+    <section class="modal" id="Form">
         <div class="row modal-content">
-            <form class="col s12">
+            <form class="col s12" id="momentForm">
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="textarea1" name="message" class="materialize-textarea" required length="280"></textarea>
@@ -93,16 +96,16 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select multiple name="categories" min="1">
+                        <select multiple required name="categories">
                           <option value="" disabled selected>Choose your categories</option>
-                          <option>Inspiring</option>
-                          <option>Motivating</option>
-                          <option>Life Changes</option>
-                          <option>Perspective</option>
+                          <option required>Inspiring</option>
+                          <option required>Motivating</option>
+                          <option required>Life Changes</option>
+                          <option required>Perspective</option>
                       </select>
                     </div>
                     <div class="row modal-footer">
-                        <button class="btn waves-effect waves-light modal-action modal-close" type="submit" name="action">Submit</button>
+                        <button class="btn waves-effect waves-light modal-action" type="submit" name="action">Submit</button>
                         <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
                         <label for="geoLoc">Location</label>
                     </div>
