@@ -15,8 +15,10 @@ function allMoments(req, res){
 function post(req, res){
   //saves req body into variable
   console.log(req.body)
-  var location = getLatLng(req.body.location);
-  req.body.location = location;
+  var location = req.body.location;
+  if(location){
+    req.body.location = getLatLng(location);
+  }
   var newMoment = new db.Moment(req.body);
     // find moments location to update embedded moments
   newMoment.save(function(err, saveMoment){
@@ -30,10 +32,6 @@ function post(req, res){
 }
 //returns an object with key value pairs of lat lng
 function getLatLng(strings){
-  if(strings === 'unknown'){
-    return strings;
-  }
-  console.log(strings);
   var arr = strings.split('l');
   return {
     lat : parseFloat(arr[1]),

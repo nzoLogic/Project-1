@@ -48,11 +48,7 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
-        $('html, body').animate({
-            scrollTop: $('.moment-section').offset().top
-        }, 2000);
-    });
-
+});
 
     //event listener for categories sideNav
     $('#categoryFilter').on('click', 'input', function(e) {
@@ -65,15 +61,14 @@ $(document).ready(function() {
 
     //event listener for clearing filters
     $('.clear').on('click',(function(e){
-      console.log('click');
       $('input[type="checkbox"]').prop('checked', false);
       momentsFeed = moments;
     }));
         //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment
-        momentsFeed = json.map(sortMoment)
-        moments = momentsFeed;
+        moments = json.map(sortMoment)
+        momentsFeed = moments;
         console.log(momentsFeed)
         select3();
         locationContainer(moments);
@@ -119,10 +114,8 @@ $(document).ready(function() {
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
       var newMome = sortMoment(json);
-      console.log('moments is ', json);
-      console.log('moments location is ', json.location);
         $('#momentsFeed input').val('');
-        moments.push(newMome);
+        moments.unshift(newMome);
         renderMarker(newMome.location)
     }
 /*******************************************************************
@@ -137,6 +130,7 @@ $(document).ready(function() {
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
+
     var map = new google.maps.Map(document.getElementsByClassName('map')[0], mapOptions);
     var markerContainer = [];
 

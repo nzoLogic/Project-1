@@ -38,7 +38,7 @@
     <!-- Moment Feed -->
     <main class="section">
         <section class="moment-section row">
-              <div class="moment-container col s10 offset-s1 offset-m1 m5 z-depth-5 frost" id="momentsFeed">
+              <div class="moment-container col s10 offset-s1 offset-m1 m5 z-depth-5 frost">
                 <div id="momentsFeed"></div>
               </div>
             <!--Map -->
@@ -96,18 +96,18 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select multiple required name="categories">
-                          <option value="" disabled selected>Choose your categories</option>
-                          <option required>Inspiring</option>
-                          <option required>Motivating</option>
-                          <option required>Life Changes</option>
-                          <option required>Perspective</option>
+                        <select name="categories" required>
+                          <option value="" disabled selected data-error="please select a category">Choose your categories</option>
+                          <option>Inspiring</option>
+                          <option>Motivating</option>
+                          <option>Life Changes</option>
+                          <option>Perspective</option>
                       </select>
                     </div>
                     <div class="row modal-footer">
+                      <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
+                      <label for="geoLoc">Location</label>
                         <button class="btn waves-effect waves-light modal-action" type="submit" name="action">Submit</button>
-                        <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
-                        <label for="geoLoc">Location</label>
                     </div>
                 </div>
             </form>
