@@ -14,7 +14,6 @@ function allMoments(req, res){
 //POST /api/moments
 function post(req, res){
   //saves req body into variable
-  console.log(req.body)
   var location = getLatLng(req.body.location);
   req.body.location = location;
   var newMoment = new db.Moment(req.body);
@@ -24,6 +23,7 @@ function post(req, res){
         console.log('error on moment save', err);
       }
       else{
+        console.log(saveMoment);
         res.json(saveMoment);
       }
   })
@@ -33,7 +33,6 @@ function getLatLng(strings){
   if(strings === 'unknown'){
     return strings;
   }
-  console.log(strings);
   var arr = strings.split('l');
   return {
     lat : parseFloat(arr[1]),

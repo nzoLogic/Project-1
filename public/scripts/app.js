@@ -25,6 +25,7 @@ $(document).ready(function() {
     // model
     $('.modal').modal();
 
+
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
     var momentSource = $('#moments-template').html();
@@ -48,9 +49,9 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
-        $('html, body').animate({
-            scrollTop: $('.moment-section').offset().top
-        }, 2000);
+        // $('html, body').animate({
+        //     scrollTop: $('.moment-section').offset().top
+        // }, 2000);
     });
 
 
@@ -119,12 +120,14 @@ $(document).ready(function() {
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
       var newMome = sortMoment(json);
-      console.log('moments is ', json);
-      console.log('moments location is ', json.location);
+      // console.log('moments location is ', json.location);
         $('#momentsFeed input').val('');
         moments.push(newMome);
         renderMarker(newMome.location)
     }
+
+    //Error Form
+
 /*******************************************************************
 
                         MAP section
@@ -164,10 +167,12 @@ $(document).ready(function() {
     //renders markers to map
     function renderMarker(loc) {
         // console.log(loc);
+        console.log(loc);
         var marker = new google.maps.Marker({
             position: loc,
             animation: google.maps.Animation.DROP
         });
+        console.log(marker)
         markerCluster.addMarker(marker);
         markerContainer.push(marker);
     }

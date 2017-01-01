@@ -81,7 +81,8 @@ Map & Moments feed styling
   height: 80vh;
 }
 .moment {
-background-color: rgba(184, 184, 184, 0.97);
+  background-color: rgba(184, 184, 184, 0.97);
+  font-size: 15px;
 }
 
 .moment-container {
@@ -100,4 +101,8 @@ background-color: rgba(184, 184, 184, 0.97);
 
 .card-action a{
   color: #417385 !important;
+}
+.flow-text{
+  font-size: 17px;
+
 }
