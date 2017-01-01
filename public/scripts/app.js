@@ -1,4 +1,3 @@
-
 console.log('app.js online');
 //active collection of moments
 var $momentsFeed;
@@ -15,7 +14,7 @@ $(document).ready(function() {
     $('ul.tabs').tabs();
     //materialize button collapsible
     $('.button-collapse').sideNav({
-      edge: 'right'
+        edge: 'right'
     });
     //dropdown hover
     $('.dropdown-button').dropdown({
@@ -48,23 +47,23 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
-});
+    });
 
     //event listener for categories sideNav
     $('#categoryFilter').on('click', 'input', function(e) {
-            var $category = $(this).val();
-            momentsFeed = moments.filter(function(moment) {
-                return moment.categories.includes($category);
-            })
-            console.log(momentsFeed);
+        var $category = $(this).val();
+        momentsFeed = moments.filter(function(moment) {
+            return moment.categories.includes($category);
         })
+        console.log(momentsFeed);
+    })
 
     //event listener for clearing filters
-    $('.clear').on('click',(function(e){
-      $('input[type="checkbox"]').prop('checked', false);
-      momentsFeed = moments;
+    $('.clear').on('click', (function(e) {
+        $('input[type="checkbox"]').prop('checked', false);
+        momentsFeed = moments;
     }));
-        //handles successfull GET req for all moments
+    //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment
         moments = json.map(sortMoment)
@@ -74,27 +73,16 @@ $(document).ready(function() {
         locationContainer(moments);
     }
     //call back function for returning data we want
-    function sortMoment(obj){
-      return {
-       message : obj.message,
-       categories : obj.categories,
-       location : obj.location
-     }
+    function sortMoment(obj) {
+        return {
+            message: obj.message,
+            categories: obj.categories,
+            location: obj.location
+        }
     }
     //checks if moment feed has 3 moments inside.
     function select3() {
         var nOfMoments = $momentsFeed.children().length;
-        // //toggle 2nd child class popout
-        // if (nOfMoments > 0) {
-        //     $('.moment:nth-child(2)').toggleClass('z-depth-5');
-        // }
-        // //remove first child
-        // if (nOfMoments === 3) {
-        //     // console.log(topChild);
-        //     $('.moment:first').detach();
-        //     return select3();
-        // }
-
         //render the first moment in collection
         render(momentsFeed.shift());
     }
@@ -113,32 +101,223 @@ $(document).ready(function() {
     }
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-      var newMome = sortMoment(json);
+        var newMome = sortMoment(json);
         $('#momentsFeed input').val('');
         moments.unshift(newMome);
         renderMarker(newMome.location)
     }
-/*******************************************************************
+    /*******************************************************************
 
-                        MAP section
+                            MAP section
 
-*******************************************************************/
+    *******************************************************************/
 
     //maps initial options
     var mapOptions = {
         center: new google.maps.LatLng(37.7831, -122.4039),
         zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true,
+        mapTypeControlOptions: {
+          mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
+        }
     };
-
+    var styledMapType = new google.maps.StyledMapType([{
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#1d2c4d"
+            }]
+        },
+        {
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#8ec3b9"
+            }]
+        },
+        {
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "color": "#1a3646"
+            }]
+        },
+        {
+            "featureType": "administrative.country",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#4b6878"
+            }]
+        },
+        {
+            "featureType": "administrative.land_parcel",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#64779e"
+            }]
+        },
+        {
+            "featureType": "administrative.province",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#4b6878"
+            }]
+        },
+        {
+            "featureType": "landscape.man_made",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#334e87"
+            }]
+        },
+        {
+            "featureType": "landscape.natural",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#023e58"
+            }]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#283d6a"
+            }]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#6f9ba5"
+            }]
+        },
+        {
+            "featureType": "poi",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "color": "#1d2c4d"
+            }]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#023e58"
+            }]
+        },
+        {
+            "featureType": "poi.park",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#3C7680"
+            }]
+        },
+        {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#304a7d"
+            }]
+        },
+        {
+            "featureType": "road",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#98a5be"
+            }]
+        },
+        {
+            "featureType": "road",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "color": "#1d2c4d"
+            }]
+        },
+        {
+            "featureType": "road.highway",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#2c6675"
+            }]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#255763"
+            }]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#b0d5ce"
+            }]
+        },
+        {
+            "featureType": "road.highway",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "color": "#023e58"
+            }]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#98a5be"
+            }]
+        },
+        {
+            "featureType": "transit",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "color": "#1d2c4d"
+            }]
+        },
+        {
+            "featureType": "transit.line",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#283d6a"
+            }]
+        },
+        {
+            "featureType": "transit.station",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#3a4762"
+            }]
+        },
+        {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#0e1626"
+            }]
+        },
+        {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#4e6d70"
+            }]
+        }
+    ],
+  {name: 'Styled Map'});
     var map = new google.maps.Map(document.getElementsByClassName('map')[0], mapOptions);
+    map.mapTypes.set('styled_map', styledMapType);
+    map.setMapTypeId('styled_map');
     var markerContainer = [];
 
     // var infoWindow = new google.maps.InfoWindow({
     //     map: map
     // });
-    var options = {imagePath: '../somer/'};
-    var markerCluster = new MarkerClusterer(map, options);
+    var markerCluster = new MarkerClusterer(map);
 
     //toggle map display
     $('.mapInit').click(function(e) {
@@ -169,20 +348,19 @@ $(document).ready(function() {
     function currentLocation() {
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var test =
-               'l' + position.coords.latitude +
-               'l' + position.coords.longitude;
-            console.log(test)
-            $('#geoLoc').val(test);
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var test =
+                    'l' + position.coords.latitude +
+                    'l' + position.coords.longitude;
+                console.log(test)
+                $('#geoLoc').val(test);
                 // infoWindow.setPosition(pos);
                 // infoWindow.setContent('Moment');
                 // map.setCenter(pos);
             });
-          }
-          else {
+        } else {
             alert("Looks like your browser doesn't support geocoding!");
-          }
+        }
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
