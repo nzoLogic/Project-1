@@ -7,8 +7,14 @@ var mongoose = require('mongoose'),
     message: String,
     unknown: Boolean,
     location: {
-      lat: Number,
-      lng: Number
+      lat: {
+        type: Number,
+        default: -79.120939
+      },
+      lng: {
+        type: Number,
+        default: -47.191586
+      }
     },
     categories: [String]
   });
