@@ -1,8 +1,6 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
+    Schema = mongoose.Schema;
     //include locations schema file
-    Locations = require('./location');
-
   var MomentSchema = new Schema({
     message: String,
     unknown: Boolean,

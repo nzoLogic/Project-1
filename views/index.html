@@ -37,15 +37,20 @@
         <a href="#!" data-activates="slide-out" class="button-collapse btn-floating btn-large "><i class="material-icons">menu</i></a>
 
     </div>
+
+    <div class="mapButton">
+        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">navigation</i></a>
+
+    </div>
     <!-- Moment Feed -->
     <main class="section">
         <section class="moment-section row">
-              <div class="moment-container col s10 offset-s1 offset-m1 m5 z-depth-5 frost">
+            <div class="moment-container col s10 offset-s1 offset-l1 offset-m1 m10 l4 z-depth-5 frost">
                 <div id="momentsFeed"></div>
-              </div>
+            </div>
             <!--Map -->
-            <div class="col s10 offset-s1 offset-m1 m4 z-depth-5 frost hide-on-small-only moment-container">
-              <div class="map"></div>
+            <div class="entireMap col s10 offset-s1 offset-l1 l4 z-depth-5 frost hide-on-med-and-down moment-container">
+                <div class="map"></div>
             </div>
             <div class="fixed-action-btn">
                 <a class="btn-floating btn-large waves-effect waves-light form-icon" href="#Form"><i class="material-icons">mode_edit</i></a>
@@ -54,36 +59,71 @@
     </main>
     <!-- Menu slideout nav -->
     <ul id="slide-out" class="side-nav">
-        <li>
+        <!-- <li>
             <h4 class="center">Categories</h4></li>
         <li class="divider"></li>
         <li>
             <form class="container" id="categoryFilter">
-              <div class="input-field col s12">
-                <p>
-                    <input data-id="inspiring"type="checkbox" id="inspiring" value="inspiring" />
-                    <label for="inspiring">Inspiring</label>
-                </p>
-                <p>
-                    <input data-id="motivating"type="checkbox" id="motivating" value="motivating" />
-                    <label for="motivating">Motivating</label>
-                </p>
-                <p>
-                    <input data-id="life changes"type="checkbox" id="lifeChanges" value="life changes" />
-                    <label for="lifeChanges">Life Changes</label>
-                </p>
-                <p>
-                    <input data-id="perspective"type="checkbox" id="perspective" value="perspective" />
-                    <label for="perspective">Perspective</label>
-                </p>
-              </div>
+                <div class="input-field col s12">
+                    <p>
+                        <input data-id="inspiring" type="checkbox" id="inspiring" value="inspiring" />
+                        <label for="inspiring">Inspiring</label>
+                    </p>
+                    <p>
+                        <input data-id="motivating" type="checkbox" id="motivating" value="motivating" />
+                        <label for="motivating">Motivating</label>
+                    </p>
+                    <p>
+                        <input data-id="life changes" type="checkbox" id="lifeChanges" value="life changes" />
+                        <label for="lifeChanges">Life Changes</label>
+                    </p>
+                    <p>
+                        <input data-id="perspective" type="checkbox" id="perspective" value="perspective" />
+                        <label for="perspective">Perspective</label>
+                    </p>
+                </div>
             </form>
-          </li>
-            <li><a class="waves-effect waves-light btn clear" href="#!">Clear Filters</a></li>
-          <li class="divider"></li>
-          <br />
-        <li> <h4 class="center">Map</h4></li>
+        </li>
+        <li><a class="waves-effect waves-light btn clear" href="#!">Clear Filters</a></li> -->
         <li class="divider"></li>
+        <br />
+        <li>
+            <h4 class="center">Map</h4></li>
+        <li class="divider"></li>
+        <ul class="collapsible" data-collapsible="accordion">
+            <li>
+                <div class="collapsible-header"><i class="material-icons">filter_drama</i>
+                    <h4>Categories</h4></div>
+                <div class="collapsible-body">
+                    <form class="container" id="categoryFilter">
+                        <div class="input-field">
+                            <div>
+                                <input data-id="inspiring" type="checkbox" id="inspiring" value="inspiring" />
+                                <label for="inspiring">Inspiring</label>
+                            </div>
+                            <div>
+                                <input data-id="motivating" type="checkbox" id="motivating" value="motivating" />
+                                <label for="motivating">Motivating</label>
+                            </div>
+                            <div>
+                                <input data-id="life changes" type="checkbox" id="lifeChanges" value="life changes" />
+                                <label for="lifeChanges">Life Changes</label>
+                            </div>
+                            <div>
+                                <input data-id="perspective" type="checkbox" id="perspective" value="perspective" />
+                                <label for="perspective">Perspective</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+        </ul>
     </ul>
 
     <!-- Moment form modal -->
@@ -92,7 +132,7 @@
             <form class="col s12" id="momentForm">
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" name="message" class="materialize-textarea" required length="280"></textarea>
+                        <textarea id="textarea1" name="message" pattern="admin" class="materialize-textarea" required length="280"></textarea>
                         <label for="textarea1">Share your moments</label>
                     </div>
                 </div>
@@ -106,15 +146,25 @@
                           <option>Motivating</option>
                           <option>Life Changes</option>
                           <option>Perspective</option>
+
                       </select>
                     </div>
                     <div class="row modal-footer">
-                      <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
-                      <label for="geoLoc">Location</label>
+                        <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
+                        <label for="geoLoc">Location</label>
                         <button class="btn waves-effect waves-light modal-action" type="submit" name="action">Submit</button>
                     </div>
                 </div>
             </form>
+          </div>
+          <div class="divider"></div>
+          <div class="modal-footer after-submit">
+            <div class="row">
+            <a href="#!" class="btn-floating waves-effect green"><i class="material-icons">done</i></a>
+            <a href="#!" class="btn-floating waves-effect modify-moment" data-method="put"><i class="material-icons blue">mode_edit</i></a>
+            <a href="#!" class="btn-floating waves-effect modify-moment" data-method="delete"><i class="material-icons red">delete</i></a>
+          </div>
+          </div>
     </section>
     <!-- Handlebars UI test template -->
     <script id="moments-template" type="text/x-handlebars-template">
@@ -128,4 +178,5 @@
                 <a href="#">{{this}}</a> {{/each}}
     </script>
 </body>
+
 </html>
