@@ -121,6 +121,7 @@ $(document).ready(function() {
         error: handleError
       });
     }
+
  // Event Listener to hide Map
 $('.mapButton').click(function () {
    $('.entireMap').toggleClass('hide');
