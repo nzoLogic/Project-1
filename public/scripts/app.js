@@ -40,9 +40,6 @@ $(document).ready(function() {
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
       e.preventDefault();
-      console.log($(this));
-      var categorySelect = $(this).find('select').children('option.cat').prop('selected');
-      if(categorySelect){
         $.ajax({
           method: 'POST',
           url: '/api/moments',
@@ -50,10 +47,6 @@ $(document).ready(function() {
           success: newMomentSuccess,
           error: handleError
         });
-      }
-      else {
-        // $(this).find('select').prop('validationMessage','Please select a category');
-      }
     });
 
     //event listener for categories sideNav
@@ -102,16 +95,30 @@ $(document).ready(function() {
         momentsFeed.push(data);
         setTimeout(select3, 3000);
     }
+    $('.modify-moment').click(function(e){
+      console.log($(this).data('method'))
+    });
 
     function handleError(err) {
         console.log('error in moments', err);
     }
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-        var newMome = sortMoment(json);
+        $('.after-submit').toggle();
+        var currentId = json._id;
         $('#momentsFeed input').val('');
-        moments.unshift(newMome);
+        momentsFeed.unshift(newMome);
         renderMarker(newMome.location)
+    }
+    function editMomentReq(e, id){
+      console.log('hey');
+      // $.ajax({
+      //   method: 'PUT',
+      //   url: '/api/moments/' + id,
+      //   data: $(this).serialize(),
+      //   success: handleSuccess,
+      //   error: handleError
+      // });
     }
     /*******************************************************************
 

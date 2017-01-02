@@ -2,9 +2,7 @@
 functions for accessing moments
 ***************/
 
-var db = require('../models'),
-    Locations = require('./location.js');
-
+var db = require('../models');
 // GET /api/moments
 function allMoments(req, res){
   db.Moment.find({}, function(err, moments){
