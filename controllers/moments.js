@@ -54,7 +54,7 @@ function updateMoment(req, res){
       console.log(err);
       return res.status(500).send();
     }
-    console.log(updatedMoment);
+    console.log('updated moment is ', updatedMoment);
     res.json(updatedMoment);
   });
 }

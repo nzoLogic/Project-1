@@ -51,7 +51,7 @@ $(document).ready(function() {
         $('#Form').modal('close');
     });
 
-    //event listener for categories sideNav
+        //event listener for categories sideNav
     $('#categoryFilter').on('click', 'input', function(e) {
         var $category = $(this).val();
         momentsFeed = moments.filter(function(moment) {
@@ -68,9 +68,10 @@ $(document).ready(function() {
     //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment
+        console.log(json);
         moments = json.map(sortMoment)
         momentsFeed = moments;
-        console.log(momentsFeed)
+        // console.log(momentsFeed)
         momentsFeed.forEach(render);
         locationContainer(moments);
     }
@@ -82,15 +83,23 @@ $(document).ready(function() {
             location: obj.location
         }
     }
+    //callback function that handles edited moment responses
+    function handleEdit(moment) {
+        var freshMoment = sortMoment(moment);
+        // console.log(test);
+         updateMomentCollection(freshMoment);
+         renderMarker(freshMoment.location);
+    }
 
-    function handleMoment(moment) {
-        console.log(moment.map(sortMoment));
-        moments.unshift(moment.map(sortMoment));
+    function updateMomentCollection(moment){
+      moments.unshift(moment);
+      momentsFeed.unshift(moment);
+      render(moment)
     }
 
     //appends data to moments feed section every 3 seconds
     function render(data) {
-        $momentsFeed.append(momentHB({
+        $momentsFeed.prepend(momentHB({
             moment: data
         }));
     }
@@ -100,30 +109,60 @@ $(document).ready(function() {
     }
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-        var res = json;
+        console.log('response id is ', resId);
+
         $('#modifyMoment').modal('open');
-        $('.finished').click($('#modifyMoment').modal('close'));
-        $('.modify-moment').on('click',function(e){
-
-        })
-        // momentsFeed.unshift(newMome);
-        // renderMarker(newMome.location)
+        $('.finished').click(function() {
+          handleEdit(json);
+          $('.finished').off();
+            return $('#modifyMoment').modal('close');
+        });
+        var resId = json._id;
+        //adds event listener to modify moment buttons
+        $('.modify-moment').on('click', {'id': resId}, function(e) {
+                var data = {
+                  'method': getDataMethod($(this)),
+                  'id': e.data.id
+                };
+                console.log('e data object is ', data.method);
+                //check if method is delete
+                if(data.method === 'delete'){
+                  e.data = data;
+                  e.data.success = handleDeletedMoment;
+                  console.log(e.data)
+                  editMomentReq(e);
+                  return;
+                }
+                $('.edit-modal').toggle();
+                data.success = handleEdit;
+                $('#editForm').on('submit', data, editMomentReq);
+            })
+            // momentsFeed.unshift(newMome);
+            // renderMarker(newMome.location)
     }
-
-    function isModifier() {
-        console.log($(this))
-        return $(this).hasClass('modify-moment');
-
-        // console.log($(this).data('method'))
+    //returns the data-method property of an element
+    function getDataMethod($element) {
+        return $element.data('method');
     }
+    //handles delete response
+    function handleDeletedMoment(res){
+      console.log(res);
+      $('#deletedModal').modal('open');
+      setTimeout(function(){
+        $('#deletedModal').modal('close');
+      }, 3000);
+    }
+    //returns either handle
 
-    function editMomentReq(req) {
-        console.log(req);
+    function editMomentReq(e) {
+        e.preventDefault();
+        $('#modifyMoment').modal('close');
+      console.log($(this).serialize());
         $.ajax({
-            method: 'PUT',
-            url: '/api/moments/' + id,
+            method: e.data.method,
+            url: '/api/moments/' + e.data.id,
             data: $(this).serialize(),
-            success: handleSuccess,
+            success: e.data.success,
             error: handleError
         });
     }
