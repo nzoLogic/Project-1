@@ -124,7 +124,14 @@ $(document).ready(function() {
 
  // Event Listener to hide Map
 $('.mapButton').click(function () {
-   $('.entireMap').toggleClass('hide');
+  if(!($('.entireMap').hasClass('hide'))){
+    $('.entireMap').toggleClass('hide');
+    $('.expandMoments').removeClass('offset-m1 m10 l4');
+  }
+  else {
+    $('.entireMap').toggleClass('hide');
+    $('.expandMoments').addClass('offset-m1 m10 l4');
+  }
 
 });
 
