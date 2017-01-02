@@ -123,12 +123,14 @@
     <section class="modal" id="Form">
         <div class="row modal-content">
             <form class="col s12" id="momentForm">
+                <!-- Text area -->
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="textarea1" name="message" pattern="admin" class="materialize-textarea" required length="280"></textarea>
                         <label for="textarea1">Share your moments</label>
                     </div>
                 </div>
+                <!-- Category Selection -->
                 <div class="row">
                     <div class="input-field col s12">
                         <select required name="categories" class="browser-default">
@@ -146,15 +148,22 @@
                     </div>
                 </div>
             </form>
-          </div>
-          <div class="divider"></div>
-          <div class="modal-footer after-submit">
+        </div>
+    </section>
+
+    <!-- Post moment model -->
+    <section class="modal" id="modifyMoment">
+      <div class="modal-content">
+        <h4 class="center">Moment Saved!</h4>
+        <div class="divider"></div>
+      </div>
+        <section class="modal-content after-submit">
             <div class="row">
-            <a href="#!" class="btn-floating waves-effect green"><i class="material-icons">done</i></a>
-            <a href="#!" class="btn-floating waves-effect modify-moment" data-method="put"><i class="material-icons blue">mode_edit</i></a>
-            <a href="#!" class="btn-floating waves-effect modify-moment" data-method="delete"><i class="material-icons red">delete</i></a>
-          </div>
-          </div>
+              <a href="#!" class="btn-floating waves-effect modify-moment" data-method="delete"><i class="material-icons red">delete</i></a>
+                <a href="#!" class="btn-floating waves-effect modify-moment" data-method="put"><i class="material-icons blue">mode_edit</i></a>
+                  <a href="#!" class="btn-floating btn-large waves-effect green right finished"><i class="material-icons">done</i></a>
+            </div>
+        </section>
     </section>
     <!-- Handlebars UI test template -->
     <script id="moments-template" type="text/x-handlebars-template">

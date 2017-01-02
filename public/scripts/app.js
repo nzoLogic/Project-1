@@ -23,6 +23,7 @@ $(document).ready(function() {
     });
     // model
     $('.modal').modal();
+    // $('#modifyMoment').modal('open')
 
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
@@ -39,14 +40,15 @@ $(document).ready(function() {
 
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
-      e.preventDefault();
+        e.preventDefault();
         $.ajax({
-          method: 'POST',
-          url: '/api/moments',
-          data: $(this).serialize(),
-          success: newMomentSuccess,
-          error: handleError
+            method: 'POST',
+            url: '/api/moments',
+            data: $(this).serialize(),
+            success: newMomentSuccess,
+            error: handleError
         });
+        $('#Form').modal('close');
     });
 
     //event listener for categories sideNav
@@ -80,9 +82,10 @@ $(document).ready(function() {
             location: obj.location
         }
     }
-    function handleMoment(moment){
-      console.log(moment.map(sortMoment));
-      moments.unshift(moment.map(sortMoment));
+
+    function handleMoment(moment) {
+        console.log(moment.map(sortMoment));
+        moments.unshift(moment.map(sortMoment));
     }
 
     //appends data to moments feed section every 3 seconds
@@ -92,34 +95,37 @@ $(document).ready(function() {
         }));
     }
 
-    $('.modify-moment').click(isModifier);
-    
     function handleError(err) {
         console.log('error in moments', err);
     }
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-        $('.after-submit').toggle();
-        var currentId = json._id;
-        $('#momentsFeed input').val('');
-        momentsFeed.unshift(newMome);
-        renderMarker(newMome.location)
+        var res = json;
+        $('#modifyMoment').modal('open');
+        $('.finished').click($('#modifyMoment').modal('close'));
+        $('.modify-moment').on('click',function(e){
+
+        })
+        // momentsFeed.unshift(newMome);
+        // renderMarker(newMome.location)
     }
-    function isModifier(){
-      if($(this).hasClass('modify-moment')){
-        console.log('modifier');
+
+    function isModifier() {
+        console.log($(this))
+        return $(this).hasClass('modify-moment');
+
         // console.log($(this).data('method'))
-      }
     }
-    function editMomentReq(id){
-      console.log('hey');
-      $.ajax({
-        method: 'PUT',
-        url: '/api/moments/' + id,
-        data: $(this).serialize(),
-        success: handleSuccess,
-        error: handleError
-      });
+
+    function editMomentReq(req) {
+        console.log(req);
+        $.ajax({
+            method: 'PUT',
+            url: '/api/moments/' + id,
+            data: $(this).serialize(),
+            success: handleSuccess,
+            error: handleError
+        });
     }
     /*******************************************************************
 
