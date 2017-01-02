@@ -69,7 +69,7 @@ $(document).ready(function() {
         moments = json.map(sortMoment)
         momentsFeed = moments;
         console.log(momentsFeed)
-        select3();
+        momentsFeed.forEach(render);
         locationContainer(moments);
     }
     //call back function for returning data we want
@@ -80,25 +80,20 @@ $(document).ready(function() {
             location: obj.location
         }
     }
-    //checks if moment feed has 3 moments inside.
-    function select3() {
-        var nOfMoments = $momentsFeed.children().length;
-        //render the first moment in collection
-        render(momentsFeed.shift());
+    function handleMoment(moment){
+      console.log(moment.map(sortMoment));
+      moments.unshift(moment.map(sortMoment));
     }
+
     //appends data to moments feed section every 3 seconds
     function render(data) {
         $momentsFeed.append(momentHB({
             moment: data
         }));
-
-        momentsFeed.push(data);
-        setTimeout(select3, 3000);
     }
-    $('.modify-moment').click(function(e){
-      console.log($(this).data('method'))
-    });
 
+    $('.modify-moment').click(isModifier);
+    
     function handleError(err) {
         console.log('error in moments', err);
     }
@@ -110,15 +105,21 @@ $(document).ready(function() {
         momentsFeed.unshift(newMome);
         renderMarker(newMome.location)
     }
-    function editMomentReq(e, id){
+    function isModifier(){
+      if($(this).hasClass('modify-moment')){
+        console.log('modifier');
+        // console.log($(this).data('method'))
+      }
+    }
+    function editMomentReq(id){
       console.log('hey');
-      // $.ajax({
-      //   method: 'PUT',
-      //   url: '/api/moments/' + id,
-      //   data: $(this).serialize(),
-      //   success: handleSuccess,
-      //   error: handleError
-      // });
+      $.ajax({
+        method: 'PUT',
+        url: '/api/moments/' + id,
+        data: $(this).serialize(),
+        success: handleSuccess,
+        error: handleError
+      });
     }
     /*******************************************************************
 
