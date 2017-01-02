@@ -23,8 +23,11 @@ $(document).ready(function() {
         belowOrigin: true
     });
     // model
+
     $('.modal').modal();
 
+    //toast
+    $('.tooltipped').tooltip({delay: 50});
 
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
@@ -49,6 +52,7 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
+
 
 });
 
@@ -117,10 +121,9 @@ $(document).ready(function() {
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
       var newMome = sortMoment(json);
-<<<<<<< HEAD
-      // console.log('moments location is ', json.location);
-=======
->>>>>>> 327e8c2f0b2e40ab2aef97cb431c8a8a1a22010f
+
+      console.log("json id",json._id);
+
         $('#momentsFeed input').val('');
         moments.unshift(newMome);
         renderMarker(newMome.location)
