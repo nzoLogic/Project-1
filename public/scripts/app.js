@@ -39,14 +39,21 @@ $(document).ready(function() {
 
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
-        e.preventDefault();
+      e.preventDefault();
+      console.log($(this));
+      var categorySelect = $(this).find('select').children('option.cat').prop('selected');
+      if(categorySelect){
         $.ajax({
-            method: 'POST',
-            url: '/api/moments',
-            data: $(this).serialize(),
-            success: newMomentSuccess,
-            error: handleError
+          method: 'POST',
+          url: '/api/moments',
+          data: $(this).serialize(),
+          success: newMomentSuccess,
+          error: handleError
         });
+      }
+      else {
+        // $(this).find('select').prop('validationMessage','Please select a category');
+      }
     });
 
     //event listener for categories sideNav
@@ -119,7 +126,7 @@ $(document).ready(function() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         disableDefaultUI: true,
         mapTypeControlOptions: {
-          mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'styled_map']
         }
     };
     var styledMapType = new google.maps.StyledMapType([{
@@ -307,8 +314,9 @@ $(document).ready(function() {
                 "color": "#4e6d70"
             }]
         }
-    ],
-  {name: 'Styled Map'});
+    ], {
+        name: 'Styled Map'
+    });
     var map = new google.maps.Map(document.getElementsByClassName('map')[0], mapOptions);
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');

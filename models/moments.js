@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
         default: -47.191586
       }
     },
-    categories: [String]
+    categories: String
   });
 
   var Moment = mongoose.model('Moment', MomentSchema);

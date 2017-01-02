@@ -30,6 +30,36 @@ function post(req, res){
       }
   })
 }
+//deletes moment by id
+function deleteMoment(req,res){
+  db.Moment.findOneAndRemove({_id: req.params.id}, function(err, delMoment){
+    if(err){
+      return res.status(500).send();
+    }
+    res.send('Moment Deleted');
+  })
+}
+//update moment by id
+function updateMoment(req, res){
+  var form = req.body;
+  var params = req.params.id;
+  var updates = {
+    'message': form.message,
+    'categories': form.categories,
+    'returnNewDocument': true
+  };
+  if(form.location){
+    updates.location = form.location;
+  }
+  db.Moment.findOneAndUpdate({_id: req.params.id},updates, function(err, updatedMoment){
+    if(err){
+      console.log(err);
+      return res.status(500).send();
+    }
+    console.log(updatedMoment);
+    res.json(updatedMoment);
+  });
+}
 //returns an object with key value pairs of lat lng
 function getLatLng(strings){
   var arr = strings.split('l');
@@ -42,4 +72,6 @@ function getLatLng(strings){
 module.exports = {
   allMoments: allMoments,
   post: post,
+  delete: deleteMoment,
+  updateMoment: updateMoment
 };
