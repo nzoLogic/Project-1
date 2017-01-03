@@ -128,11 +128,24 @@ $('.mapButton').click(function () {
     $('.entireMap').toggleClass('hide');
     $('.expandMoments').removeClass('offset-m1 m10 l4');
   }
-  else {
+  else if (($('.entireMap').hasClass('hide'))){
     $('.entireMap').toggleClass('hide');
     $('.expandMoments').addClass('offset-m1 m10 l4');
   }
 
+});
+
+
+//Event Listener to hide moments
+$('.momentsButton').click(function () {
+  if  (!($('.expandMoments').hasClass('hide'))){
+      $('.expandMoments').toggleClass('hide');
+      $('.entireMap').removeClass('offset-li l4')
+    }
+    else{
+      $('.expandMoments').toggleClass('hide');
+      $('.entireMap').addClass('offset-li l4');
+    }
 });
 
     /*******************************************************************
