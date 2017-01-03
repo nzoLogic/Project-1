@@ -2,7 +2,8 @@ console.log('app.js online');
 //active collection of moments
 var $momentsFeed;
 var moments = [],
-    momentsFeed = [];
+    momentsFeed = [],
+    modifyData = {};
 //callback functions
 
 $(document).ready(function() {
@@ -50,8 +51,35 @@ $(document).ready(function() {
         });
         $('#Form').modal('close');
     });
-
-        //event listener for categories sideNav
+    //event listener for edit form submit
+    $('#editForm').on('submit', modifyData, editMomentReq);
+    // event listener for finished moment
+    $('.finished').click(finishMoment);
+    //function for finished moment
+    function finishMoment(e) {
+        handleEdit(modifyData);
+        modifyData = {};
+        $('#modifyMoment').modal('close');
+    }
+    // event listener for modify moment
+    $('.modify-moment').on('click', handleModify);
+    //function for checking modify data
+    function handleModify() {
+        var method = $(this).data('method');
+        modifyData = {};
+        if (method === 'delete') {
+            modifyData.method = method;
+            modifyData.success = handleDeletedMoment;
+            $('#modifyMoment').modal('close');
+        } else {
+            modifyData.method = method;
+            modifyData.success = handleEdit;
+            $('#modifyMoment').modal('close');
+            $('#edit-modal').modal('open');
+            console.log('delete is ', modifyData);
+        }
+    }
+    //event listener for categories sideNav
     $('#categoryFilter').on('click', 'input', function(e) {
         var $category = $(this).val();
         momentsFeed = moments.filter(function(moment) {
@@ -85,16 +113,17 @@ $(document).ready(function() {
     }
     //callback function that handles edited moment responses
     function handleEdit(moment) {
+        console.log(moment)
         var freshMoment = sortMoment(moment);
         // console.log(test);
-         updateMomentCollection(freshMoment);
-         renderMarker(freshMoment.location);
+        updateMomentCollection(freshMoment);
+        renderMarker(freshMoment.location);
     }
 
-    function updateMomentCollection(moment){
-      moments.unshift(moment);
-      momentsFeed.unshift(moment);
-      render(moment)
+    function updateMomentCollection(moment) {
+        moments.unshift(moment);
+        momentsFeed.unshift(moment);
+        render(moment)
     }
 
     //appends data to moments feed section every 3 seconds
@@ -107,56 +136,25 @@ $(document).ready(function() {
     function handleError(err) {
         console.log('error in moments', err);
     }
+
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-        console.log('response id is ', resId);
-
+        modifyData = json;
         $('#modifyMoment').modal('open');
-        $('.finished').click(function() {
-          handleEdit(json);
-          $('.finished').off();
-            return $('#modifyMoment').modal('close');
-        });
-        var resId = json._id;
-        //adds event listener to modify moment buttons
-        $('.modify-moment').on('click', {'id': resId}, function(e) {
-                var data = {
-                  'method': getDataMethod($(this)),
-                  'id': e.data.id
-                };
-                console.log('e data object is ', data.method);
-                //check if method is delete
-                if(data.method === 'delete'){
-                  e.data = data;
-                  e.data.success = handleDeletedMoment;
-                  console.log(e.data)
-                  editMomentReq(e);
-                  return;
-                }
-                $('.edit-modal').toggle();
-                data.success = handleEdit;
-                $('#editForm').on('submit', data, editMomentReq);
-            })
-            // momentsFeed.unshift(newMome);
-            // renderMarker(newMome.location)
-    }
-    //returns the data-method property of an element
-    function getDataMethod($element) {
-        return $element.data('method');
     }
     //handles delete response
-    function handleDeletedMoment(res){
-      console.log(res);
-      $('#deletedModal').modal('open');
-      setTimeout(function(){
-        $('#deletedModal').modal('close');
-      }, 3000);
+    function handleDeletedMoment(res) {
+        console.log(res);
+        $('#deletedModal').modal('open');
+        setTimeout(function() {
+            $('#deletedModal').modal('close');
+        }, 3000);
     }
 
     function editMomentReq(e) {
         e.preventDefault();
-        $('#modifyMoment').modal('close');
-      console.log($(this).serialize());
+        $('#edit-modal').modal('close');
+        console.log($(this).serialize());
         $.ajax({
             method: e.data.method,
             url: '/api/moments/' + e.data.id,

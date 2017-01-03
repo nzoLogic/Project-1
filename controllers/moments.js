@@ -42,9 +42,9 @@ function updateMoment(req, res){
   var form = req.body;
   var params = req.params.id;
   var updates = {
+    'new': true,
     'message': form.message,
-    'categories': form.categories,
-    'returnNewDocument': true
+    'categories': form.categories
   };
   if(form.location){
     updates.location = form.location;
