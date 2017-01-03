@@ -152,7 +152,6 @@ $(document).ready(function() {
         $('#deletedModal').modal('close');
       }, 3000);
     }
-    //returns either handle
 
     function editMomentReq(e) {
         e.preventDefault();
