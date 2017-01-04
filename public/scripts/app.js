@@ -79,17 +79,18 @@ $(document).ready(function() {
     }
     //event listener for categories sideNav
     $('#categoryFilter').on('change', 'select', function(e) {
-       var category = $(this).find(':selected').attr('id');
-       $momentsFeed.empty();
-       momentsFeed = moments.filter(function(moment) {
-            if(moment.categories.includes(category)){
-             render(moment);
-             return moment;
-           };
-       })
+        var category = $(this).find(':selected').attr('id');
+        $momentsFeed.empty();
+         moments.forEach(function(moment) {
+             if(moment.categories.includes(category)){
+               console.log(moment);
+              render(moment);
+              // return moment;
+            };
+        })
 
-       console.log(momentsFeed);
-   });
+        console.log(momentsFeed);
+    })
 
     //event listener for clearing filters
     $('.clear').on('click', (function(e) {
@@ -118,6 +119,7 @@ $(document).ready(function() {
     function handleEditResponse(moment) {
         console.log(moment)
         var freshMoment = sortMoment(moment);
+
         // console.log(test);
         updateMomentCollection(freshMoment);
         renderMarker(freshMoment.location);
@@ -127,6 +129,7 @@ $(document).ready(function() {
         moments.unshift(moment);
         momentsFeed.unshift(moment);
         render(moment)
+        console.log(moments);
     }
 
     //appends data to moments feed section every 3 seconds
