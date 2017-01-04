@@ -49,7 +49,9 @@
                 <div class="map"></div>
             </div>
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large waves-effect waves-light form-icon" href="#Form"><i class="material-icons">mode_edit</i></a>
+                <a class="btn-floating btn-large waves-effect waves-light form-icon" href="#Form">
+                  <i class="material-icons">mode_edit</i>
+                </a>
             </div>
         </section>
     </main>
@@ -131,14 +133,19 @@
 
     <!-- Moment form modal -->
     <section class="modal" id="Form">
+        <div class="modal-content">
+            <h4 class="center-align">Share a moment</h4>
+        </div>
         <div class="row modal-content">
             <form class="col s12" id="momentForm">
+                <!-- Text area -->
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea id="textarea1" name="message" pattern="admin" class="materialize-textarea" required length="280"></textarea>
                         <label for="textarea1">Share your moments</label>
                     </div>
                 </div>
+                <!-- Category Selection -->
                 <div class="row">
                     <div class="input-field col s12">
                         <select required="required" multiple name="categories" >
@@ -159,15 +166,65 @@
                     </div>
                 </div>
             </form>
-          </div>
-          <div class="divider"></div>
-          <div class="modal-footer after-submit">
+        </div>
+    </section>
+
+    <!-- Post moment model -->
+    <section class="modal" id="modifyMoment">
+        <div class="modal-content edit-modal">
+            <h4 class="center">Moment Saved!</h4>
+            <div class="divider"></div>
+        </div>
+        <!-- Edit, Delete, or Continute options  -->
+        <section class="modal-content edit-modal">
             <div class="row">
-            <a href="#!" class="btn-floating waves-effect green"><i class="material-icons">done</i></a>
-            <a href="#!" class="btn-floating waves-effect modify-moment" data-method="put"><i class="material-icons blue">mode_edit</i></a>
-            <a href="#!" class="btn-floating waves-effect modify-moment" data-method="delete"><i class="material-icons red">delete</i></a>
-          </div>
-          </div>
+                <a href="#!" class="btn-floating waves-effect modify-moment" data-method="delete"><i class="material-icons red">delete</i></a>
+                <a href="#!" class="btn-floating waves-effect modify-moment" data-method="put"><i class="material-icons blue">mode_edit</i></a>
+                <a href="#!" class="btn-floating btn-large waves-effect green right finished"><i class="material-icons">done</i></a>
+            </div>
+        </section>
+      </section>
+        <!-- Edit Last moment  -->
+        <section class="modal" id="edit-modal">
+        <section class="modal-content edit-modal">
+            <h4 class="center">Edit Moment</h4>
+        </section>
+        <section class="modal-footer edit-modal">
+            <div class="row">
+                <form class="col s12" id="editForm">
+                    <!-- Text area -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="textarea1" name="message" pattern="admin" class="materialize-textarea" required length="280"></textarea>
+                            <label for="textarea1">Share your moments</label>
+                        </div>
+                    </div>
+                    <!-- Category Selection -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <select required name="categories" class="browser-default">
+                        <option value="" disabled selected>Choose your categories</option>
+                        <option val="inspiring"class="cat">Inspiring</option>
+                        <option val="motivating"class="cat">Motivating</option>
+                        <option val="life changes"class="cat">Life Changes</option>
+                        <option val="perspective"class="cat">Perspective</option>
+                    </select>
+                        </div>
+                        <div class="row modal-footer">
+                            <input class="with-gap" name="location" type="radio" id="geoLoc" value="unknown">
+                            <label for="geoLoc">Location</label>
+                            <button class="btn waves-effect waves-light modal-action" type="submit" name="action">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </section>
+    <!-- Deleted Moment Modal  -->
+    <section class="modal" id="deletedModal">
+      <div class="modal-content">
+        <h4 class="center">Moment Deleted!</h4>
+      </div>
     </section>
     <!-- Handlebars UI test template -->
     <script id="moments-template" type="text/x-handlebars-template">
@@ -180,6 +237,7 @@
                 {{#each moment.categories}}
                 <a href="#">{{this}}</a> {{/each}}
     </script>
+    <!-- Deleted Moment template -->
 </body>
 
 </html>

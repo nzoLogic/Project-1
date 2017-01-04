@@ -2,7 +2,8 @@ console.log('app.js online');
 //active collection of moments
 var $momentsFeed;
 var moments = [],
-    momentsFeed = [];
+    momentsFeed = [],
+    modifyData = {};
 //callback functions
 
 $(document).ready(function() {
@@ -23,6 +24,7 @@ $(document).ready(function() {
     });
     // model
     $('.modal').modal();
+    // $('#modifyMoment').modal('open')
 
     //Handelbars variable
     $momentsFeed = $('#momentsFeed');
@@ -39,16 +41,42 @@ $(document).ready(function() {
 
     //event listener for a new moment submission
     $('#momentForm').on('submit', function(e) {
-      e.preventDefault();
+        e.preventDefault();
         $.ajax({
-          method: 'POST',
-          url: '/api/moments',
-          data: $(this).serialize(),
-          success: newMomentSuccess,
-          error: handleError
+            method: 'POST',
+            url: '/api/moments',
+            data: $(this).serialize(),
+            success: newMomentSuccess,
+            error: handleError
         });
+        $('#Form').modal('close');
     });
-
+    //event listener for edit form submit
+    $('#editForm').on('submit', editMomentReq);
+    // event listener for finished moment
+    $('.finished').click(finishMoment);
+    //function for finished moment
+    function finishMoment(e) {
+        handleEditResponse(modifyData);
+        modifyData = {};
+        $('#modifyMoment').modal('close');
+    }
+    // event listener for modify moment
+    $('.modify-moment').on('click', handleModify);
+    //function for checking modify data
+    function handleModify(){
+      //gets data method value as a var
+      var method = $(this).data('method');
+        //if method is delete ajax delete
+        if (method === 'delete') {
+            deleteMomentReq(modifyData._id);
+            $('#modifyMoment').modal('close');
+            modifyData = {};
+        } else {
+            $('#modifyMoment').modal('close');
+            $('#edit-modal').modal('open');
+        }
+    }
     //event listener for categories sideNav
     $('#categoryFilter').on('click', 'input', function(e) {
         var $category = $(this).val();
@@ -66,9 +94,10 @@ $(document).ready(function() {
     //handles successfull GET req for all moments
     function handleSuccess(json) {
         //call a function to sort each moment
+        console.log(json);
         moments = json.map(sortMoment)
         momentsFeed = moments;
-        console.log(momentsFeed)
+        // console.log(momentsFeed)
         momentsFeed.forEach(render);
         locationContainer(moments);
     }
@@ -80,47 +109,73 @@ $(document).ready(function() {
             location: obj.location
         }
     }
-    function handleMoment(moment){
-      console.log(moment.map(sortMoment));
-      moments.unshift(moment.map(sortMoment));
+    //callback function that handles edited moment responses
+    function handleEditResponse(moment) {
+        console.log(moment)
+        var freshMoment = sortMoment(moment);
+        // console.log(test);
+        updateMomentCollection(freshMoment);
+        renderMarker(freshMoment.location);
+    }
+
+    function updateMomentCollection(moment) {
+        moments.unshift(moment);
+        momentsFeed.unshift(moment);
+        render(moment)
     }
 
     //appends data to moments feed section every 3 seconds
     function render(data) {
-        $momentsFeed.append(momentHB({
+        $momentsFeed.prepend(momentHB({
             moment: data
         }));
     }
 
-    $('.modify-moment').click(isModifier);
 
     function handleError(err) {
         console.log('error in moments', err);
     }
+
     //takes a new moment and pushes it into moments collection
     function newMomentSuccess(json) {
-        $('.after-submit').toggle();
-        var currentId = json._id;
-        $('#momentsFeed input').val('');
-        momentsFeed.unshift(newMome);
-        renderMarker(newMome.location)
+        modifyData = json;
+        $('#modifyMoment').modal('open');
     }
-    function isModifier(){
-      if($(this).hasClass('modify-moment')){
-        console.log('modifier');
-        // console.log($(this).data('method'))
-      }
+    //handles delete response
+    function handleDeletedMoment(res) {
+        console.log(res);
+        $('#deletedModal').modal('open');
+        setTimeout(function() {
+            $('#deletedModal').modal('close');
+        }, 3000);
     }
-    function editMomentReq(id){
-      console.log('hey');
+    // ajax delete request
+    function deleteMomentReq(id){
+      console.log(id);
       $.ajax({
-        method: 'PUT',
+        method: 'delete',
         url: '/api/moments/' + id,
         data: $(this).serialize(),
-        success: handleSuccess,
+        success: handleDeletedMoment,
         error: handleError
       });
     }
+
+
+    //ajax edit request
+    function editMomentReq(e) {
+        e.preventDefault();
+        console.log(modifyData._id);
+        $('#edit-modal').modal('close');
+        $.ajax({
+            method: 'put',
+            url: '/api/moments/' + modifyData._id,
+            data: $(this).serialize(),
+            success: handleEditResponse,
+            error: handleError
+        });
+    }
+
 
  // Event Listener to hide Map
 $('#momentsButton').click(function () {
@@ -151,8 +206,6 @@ $('.expandMoments').addClass('offset-m1 m10 l4');
 });
 
 function removeTabs(){
-  // $('.expandMoments').removeClass('offset-m1 m10 l4');
-  // $('.entireMap').removeClass('offset-li l4');
   $('.expandMoments').hide();
   $('.entireMap').hide();
 
