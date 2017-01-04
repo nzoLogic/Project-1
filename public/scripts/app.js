@@ -78,13 +78,18 @@ $(document).ready(function() {
         }
     }
     //event listener for categories sideNav
-    $('#categoryFilter').on('click', 'input', function(e) {
-        var $category = $(this).val();
-        momentsFeed = moments.filter(function(moment) {
-            return moment.categories.includes($category);
-        })
-        console.log(momentsFeed);
-    })
+    $('#categoryFilter').on('change', 'select', function(e) {
+       var category = $(this).find(':selected').attr('id');
+       $momentsFeed.empty();
+       momentsFeed = moments.filter(function(moment) {
+            if(moment.categories.includes(category)){
+             render(moment);
+             return moment;
+           };
+       })
+
+       console.log(momentsFeed);
+   });
 
     //event listener for clearing filters
     $('.clear').on('click', (function(e) {
@@ -177,6 +182,32 @@ $(document).ready(function() {
                             MAP section
 
     *******************************************************************/
+    // Event Listener to hide Map
+$('#momentsButton').click(function () {
+ removeTabs();
+ $('.expandMoments').show();
+ $('.expandMoments').removeClass('offset-m1 m10 l4');
+});
+//Event Listener to hide moments
+$('#mapButton').click(function () {
+ removeTabs();
+ $('.entireMap').show();
+ $('.entireMap').removeClass('offset-l1 l4');
+ google.maps.event.trigger(map, "resize");
+});
+//Event listener to show side by side
+$('#sideBySideButton').click(function () {
+removeTabs();
+$('.expandMoments').show();
+$('.entireMap').show();
+$('.entireMap').addClass('offset-l1 l4');
+$('.expandMoments').addClass('offset-m1 m10 l4');
+});
+function removeTabs(){
+ $('.expandMoments').hide();
+ $('.entireMap').hide();
+}
+
 
     //maps initial options
     var mapOptions = {

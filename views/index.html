@@ -38,11 +38,11 @@
     <!-- Moment Feed -->
     <main class="section">
         <section class="moment-section row">
-            <div class="moment-container col s10 offset-s1 offset-l1 offset-m1 m10 l4 z-depth-5 frost">
+            <div class="expandMoments moment-container col s10 offset-s1 offset-l1 offset-m1 m10 l4 z-depth-5 frost">
                 <div id="momentsFeed"></div>
             </div>
             <!--Map -->
-            <div class="col s10 offset-s1 offset-l1 l4 z-depth-5 frost hide-on-med-and-down moment-container">
+            <div class="entireMap col s10 offset-s1 offset-l1 l4 z-depth-5 frost hide-on-med-and-down moment-container">
                 <div class="map"></div>
             </div>
             <div class="fixed-action-btn">
@@ -54,32 +54,13 @@
     </main>
     <!-- Menu slideout nav -->
     <ul id="slide-out" class="side-nav">
-        <!-- <li>
-            <h4 class="center">Categories</h4></li>
-        <li class="divider"></li>
-        <li>
-            <form class="container" id="categoryFilter">
-                <div class="input-field col s12">
-                    <p>
-                        <input data-id="inspiring" type="checkbox" id="inspiring" value="inspiring" />
-                        <label for="inspiring">Inspiring</label>
-                    </p>
-                    <p>
-                        <input data-id="motivating" type="checkbox" id="motivating" value="motivating" />
-                        <label for="motivating">Motivating</label>
-                    </p>
-                    <p>
-                        <input data-id="life changes" type="checkbox" id="lifeChanges" value="life changes" />
-                        <label for="lifeChanges">Life Changes</label>
-                    </p>
-                    <p>
-                        <input data-id="perspective" type="checkbox" id="perspective" value="perspective" />
-                        <label for="perspective">Perspective</label>
-                    </p>
-                </div>
-            </form>
-        </li>
-        <li><a class="waves-effect waves-light btn clear" href="#!">Clear Filters</a></li> -->
+      <div>
+     <ul class="tabs">
+       <li id="mapButton" class="tab col s3 "><a  href="#test1">Map</a></li>
+       <li id="momentsButton" class="tab col s3"><a href="#test2">Moments</a></li>
+       <li id="sideBySideButton" class="tab col s3"><a class="active" href="#test2">Side</a></li>
+     </ul>
+    </div>
         <li class="divider"></li>
         <br />
         <li>
@@ -87,27 +68,25 @@
         <li class="divider"></li>
         <ul class="collapsible" data-collapsible="accordion">
             <li>
-                <div class="collapsible-header"><i class="material-icons">filter_drama</i>
-                    <h4>Categories</h4></div>
+              <div class="collapsible-header"><i class="material-icons">filter_drama</i>
+                    <h5>Moments Feed</h5></div>
                 <div class="collapsible-body">
                     <form class="container" id="categoryFilter">
                         <div class="input-field">
-                            <div>
-                                <input data-id="inspiring" type="checkbox" id="inspiring" value="inspiring" />
-                                <label for="inspiring">Inspiring</label>
-                            </div>
-                            <div>
-                                <input data-id="motivating" type="checkbox" id="motivating" value="motivating" />
-                                <label for="motivating">Motivating</label>
-                            </div>
-                            <div>
-                                <input data-id="life changes" type="checkbox" id="lifeChanges" value="life changes" />
-                                <label for="lifeChanges">Life Changes</label>
-                            </div>
-                            <div>
-                                <input data-id="perspective" type="checkbox" id="perspective" value="perspective" />
-                                <label for="perspective">Perspective</label>
-                            </div>
+                            <select>
+                              <option selected val="" disabled>Select a category</option>
+                                <option data-id="inspiring"  id="inspiring" value="inspiring" />Inspiring</option>
+
+
+                                <option data-id="motivating"  id="motivating" value="motivating" />Motivating</option>
+
+
+                                <option data-id="life changes"  id="lifeChanges" value="life changes" />Life Changes </option>
+
+
+
+                                <option data-id="perspective"  id="perspective" value="perspective" />Perspective</option>
+                            </select>
                         </div>
                     </form>
                 </div>
