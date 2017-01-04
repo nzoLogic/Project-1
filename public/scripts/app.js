@@ -52,31 +52,29 @@ $(document).ready(function() {
         $('#Form').modal('close');
     });
     //event listener for edit form submit
-    $('#editForm').on('submit', modifyData, editMomentReq);
+    $('#editForm').on('submit', editMomentReq);
     // event listener for finished moment
     $('.finished').click(finishMoment);
     //function for finished moment
     function finishMoment(e) {
-        handleEdit(modifyData);
+        handleEditResponse(modifyData);
         modifyData = {};
         $('#modifyMoment').modal('close');
     }
     // event listener for modify moment
     $('.modify-moment').on('click', handleModify);
     //function for checking modify data
-    function handleModify() {
-        var method = $(this).data('method');
-        modifyData = {};
+    function handleModify(){
+      //gets data method value as a var
+      var method = $(this).data('method');
+        //if method is delete ajax delete
         if (method === 'delete') {
-            modifyData.method = method;
-            modifyData.success = handleDeletedMoment;
+            deleteMomentReq(modifyData._id);
             $('#modifyMoment').modal('close');
+            modifyData = {};
         } else {
-            modifyData.method = method;
-            modifyData.success = handleEdit;
             $('#modifyMoment').modal('close');
             $('#edit-modal').modal('open');
-            console.log('delete is ', modifyData);
         }
     }
     //event listener for categories sideNav
@@ -112,7 +110,7 @@ $(document).ready(function() {
         }
     }
     //callback function that handles edited moment responses
-    function handleEdit(moment) {
+    function handleEditResponse(moment) {
         console.log(moment)
         var freshMoment = sortMoment(moment);
         // console.log(test);
@@ -150,16 +148,27 @@ $(document).ready(function() {
             $('#deletedModal').modal('close');
         }, 3000);
     }
-
+    // ajax delete request
+    function deleteMomentReq(id){
+      console.log(id);
+      $.ajax({
+        method: 'delete',
+        url: '/api/moments/' + id,
+        data: $(this).serialize(),
+        success: handleDeletedMoment,
+        error: handleError
+      });
+    }
+    //ajax edit request
     function editMomentReq(e) {
         e.preventDefault();
+        console.log(modifyData._id);
         $('#edit-modal').modal('close');
-        console.log($(this).serialize());
         $.ajax({
-            method: e.data.method,
-            url: '/api/moments/' + e.data.id,
+            method: 'put',
+            url: '/api/moments/' + modifyData._id,
             data: $(this).serialize(),
-            success: e.data.success,
+            success: handleEditResponse,
             error: handleError
         });
     }

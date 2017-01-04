@@ -42,14 +42,14 @@ function updateMoment(req, res){
   var form = req.body;
   var params = req.params.id;
   var updates = {
-    'new': true,
     'message': form.message,
     'categories': form.categories
   };
   if(form.location){
     updates.location = form.location;
   }
-  db.Moment.findOneAndUpdate({_id: req.params.id},updates, function(err, updatedMoment){
+  console.log(updates)
+  db.Moment.findOneAndUpdate({_id: params},updates, {'new': true}, function(err, updatedMoment){
     if(err){
       console.log(err);
       return res.status(500).send();
