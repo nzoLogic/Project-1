@@ -49,6 +49,7 @@ $(document).ready(function() {
             success: newMomentSuccess,
             error: handleError
         });
+        this.reset();
         $('#Form').modal('close');
     });
     //event listener for edit form submit
@@ -79,13 +80,13 @@ $(document).ready(function() {
     }
     //event listener for categories sideNav
     $('#categoryFilter').on('change', 'select', function(e) {
-        var category = $(this).find(':selected').attr('id');
+        var category = $(this).find(':selected').data('id');
         $momentsFeed.empty();
-         moments.forEach(function(moment) {
+         momentsFeed = moments.filter(function(moment) {
              if(moment.categories.includes(category)){
                console.log(moment);
               render(moment);
-              // return moment;
+              return moment;
             };
         })
 
@@ -179,6 +180,7 @@ $(document).ready(function() {
             success: handleEditResponse,
             error: handleError
         });
+        this.reset()
     }
     /*******************************************************************
 
