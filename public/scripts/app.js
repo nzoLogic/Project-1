@@ -123,30 +123,40 @@ $(document).ready(function() {
     }
 
  // Event Listener to hide Map
-$('.mapButton').click(function () {
-  if(!($('.entireMap').hasClass('hide'))){
-    $('.entireMap').toggleClass('hide');
-    $('.expandMoments').removeClass('offset-m1 m10 l4');
-  }
-  else if (($('.entireMap').hasClass('hide'))){
-    $('.entireMap').toggleClass('hide');
-    $('.expandMoments').addClass('offset-m1 m10 l4');
-  }
+$('#momentsButton').click(function () {
+  removeTabs();
+  $('.expandMoments').show();
+  $('.expandMoments').removeClass('offset-m1 m10 l4');
 
 });
-
 
 //Event Listener to hide moments
-$('.momentsButton').click(function () {
-  if  (!($('.expandMoments').hasClass('hide'))){
-      $('.expandMoments').toggleClass('hide');
-      $('.entireMap').removeClass('offset-li l4')
-    }
-    else{
-      $('.expandMoments').toggleClass('hide');
-      $('.entireMap').addClass('offset-li l4');
-    }
+$('#mapButton').click(function () {
+  removeTabs();
+  $('.entireMap').show();
+  $('.entireMap').removeClass('offset-l1 l4');
+  google.maps.event.trigger(map, "resize");
+
+
 });
+
+//Event listener to show side by side
+$('#sideBySideButton').click(function () {
+removeTabs();
+$('.expandMoments').show();
+$('.entireMap').show();
+$('.entireMap').addClass('offset-l1 l4');
+$('.expandMoments').addClass('offset-m1 m10 l4');
+
+});
+
+function removeTabs(){
+  // $('.expandMoments').removeClass('offset-m1 m10 l4');
+  // $('.entireMap').removeClass('offset-li l4');
+  $('.expandMoments').hide();
+  $('.entireMap').hide();
+
+}
 
     /*******************************************************************
                             MAP section
