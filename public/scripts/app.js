@@ -457,9 +457,6 @@ function removeTabs(){
                     'l' + position.coords.longitude;
                 console.log(test)
                 $('#geoLoc').val(test);
-                // infoWindow.setPosition(pos);
-                // infoWindow.setContent('Moment');
-                // map.setCenter(pos);
             });
         } else {
             alert("Looks like your browser doesn't support geocoding!");

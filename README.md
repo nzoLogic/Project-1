@@ -52,3 +52,9 @@
     <li>PUT /api/moments/:id</li>
     <li>DELETE /api/moments/:id</li>
   </ul>
+  <h3>Proud Moments In Code</h3>
+  <hr />
+  <h4>Ricardo</h4>
+<img src="/public/images/Ricardo.png">
+<h4>Steele</h4>
+<img src="/public/images/Steele.png">

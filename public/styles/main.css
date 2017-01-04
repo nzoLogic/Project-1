@@ -9,14 +9,14 @@ body {
     /*background-image: url('../images/gradient.jpg');*/
     background-color: white;
     background-size: cover;
-    /*background-color: #d6d6d6;*/
+    background-color: #666;
 }
 
 .navbar-fixed  {
   font-family: 'Questrial', sans-serif;
   background-color: transparent;
   color: #417385;
-  /*box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);*/
+  box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   z-index: 1;
   height: 15vh;
 }
@@ -50,7 +50,7 @@ main {
   background-color: #e84343 !important;
 }
 .frost {
-  background-color: rgba(255,255,255,.5);
+  background-color: rgba(220, 231, 230, 0.5);
 }
 /*********
 nav styling
@@ -92,6 +92,9 @@ background-color: rgba(184, 184, 184, 0.97);
 }
 .map {
   margin: 0.5rem 0 .5rem 0;
+}
+.babyBlue {
+  background-color: rgba(4, 54, 220, .25);
 }
 
 .card-content{
