@@ -4,8 +4,8 @@ var express = require('express'),
     controllers = require('./controllers');
 
 //serve static files from public folder
-app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true}));
+app.use(express.static('public'));
 //set default get path
 app.get('/', function(req, res) {
     res.sendFile('views/index.html', {
